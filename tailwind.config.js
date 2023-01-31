@@ -10,7 +10,13 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        colorBrown: "#634B46",
+        colorBrownSecond: "#7F6B67",
+        colorYellow: "#FFDE59",
+        colorRed: "#FF5757",
+        colorGreen: "#7ED957",
+      },
     },
   },
   plugins: [],
