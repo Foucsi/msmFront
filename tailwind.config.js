@@ -18,6 +18,7 @@ module.exports = {
         colorGreen: "#7ED957",
         borderColor: "#DFDFDF",
         colorText: "#45484A",
+        colorBgWelcome: "#F2F2F4",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
