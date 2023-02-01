@@ -21,7 +21,25 @@ export default function Home() {
         />
       </Head>
       <main className="flex h-screen w-screen ">
-        <div className="h-full w-3/5"></div>
+        <div className="flex h-full w-3/5 flex-col">
+          <div className="flex items-center justify-between h-20 w-full border-b border-solid border-borderColor p-5">
+            <div>
+              <h6 className="font-montserrat text-colorText">MSM</h6>
+              <p className="font-montserrat text-colorText">
+                Menuiserie Sur Mesure
+              </p>
+            </div>
+            <div className="flex flex-row justify-around w-1/2 items-center">
+              <p className="font-montserrat font-light text-colorText">
+                Vous ne possédez pas de compte ?
+              </p>
+              <button className="text-colorText font-bold border border-solid border-colorText p-3 rounded-lg hover:shadow-lg">
+                Inscription
+              </button>
+            </div>
+          </div>
+          <div className="h-4/5 w-full"></div>
+        </div>
         <div className="flex items-center justify-center h-full bg-colorBrown w-2/5">
           <div className="flex flex-col h-1/2 w-2/3 items-center justify-center">
             <img
