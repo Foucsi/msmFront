@@ -39,6 +39,7 @@ export default function Signup() {
           password: data.user.passord,
           email: data.user.email,
           profil: data.user.profil,
+          token: data.user.token,
         })
       );
       setEmail("");

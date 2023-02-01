@@ -1,9 +1,43 @@
 import React, { useState } from "react";
+import { login } from "@/reducers/users";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [msgError, setMsgError] = useState("");
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    const res = await fetch("http://localhost:3000/users/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await res.json();
+
+    if (data.result) {
+      router.push("/Welcome");
+      dispatch(
+        login({
+          username: data.user.username,
+          password: data.user.password,
+          email: data.user.email,
+          profil: data.user.profil,
+          token: data.user.token,
+        })
+      );
+      setUsername("");
+      setPassword("");
+    } else if (data.error === "Missing or empty fields") {
+      setMsgError("Champs manquants ou vides");
+    } else if (data.error === "User not found or wrong password") {
+      setMsgError("Utilisateur introuvable ou mot de passe erroné");
+    }
+  };
   return (
     <div className="flex flex-col items-center justify-around h-3/5 w-1/2">
       <p className="font-bold text-colorText text-3xl font-montserrat">
@@ -33,11 +67,14 @@ export default function Signin() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div>
+      <div className="h-8">
         <p>{msgError}</p>
       </div>
       <div className="flex items-center justify-center w-10/12">
-        <button className="text-white bg-colorBrown w-10/12 h-11 rounded-lg hover:shadow-lg font-montserrat">
+        <button
+          onClick={handleSubmit}
+          className="text-white bg-colorBrown w-10/12 h-11 rounded-lg hover:shadow-lg font-montserrat"
+        >
           Connexion
         </button>
       </div>
