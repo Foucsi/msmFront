@@ -3,10 +3,13 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
 import Signin from "@/components/Signin";
+import { useState } from "react";
+import Signup from "@/components/Signup";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [displaySign, setDisplaySign] = useState(true);
   return (
     <>
       <Head>
@@ -34,13 +37,16 @@ export default function Home() {
               <p className="font-montserrat font-light text-colorText">
                 Vous ne possédez pas de compte ?
               </p>
-              <button className="text-colorText font-bold border border-solid border-colorText p-3 rounded-lg hover:shadow-lg">
+              <button
+                onClick={() => setDisplaySign(false)}
+                className="text-colorText font-bold border border-solid border-colorText p-3 rounded-lg hover:shadow-lg"
+              >
                 Inscription
               </button>
             </div>
           </div>
           <div className="flex items-center justify-center h-4/5 w-full">
-            <Signin />
+            {displaySign ? <Signin /> : <Signup />}
           </div>
         </div>
         <div className="flex items-center justify-center h-full bg-colorBrown w-2/5">
