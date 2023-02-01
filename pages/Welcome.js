@@ -5,6 +5,7 @@ import { GrDown } from "react-icons/gr";
 
 export default function Welcome() {
   const [getProfil, setGetProfil] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
   const users = useSelector((state) => state.user.value);
 
   /* fonction permettant de recuperer le profil de l'utilisateur et ainsi pouvoir changer le backgroundColor*/
@@ -48,10 +49,27 @@ export default function Welcome() {
               : "bg-colorGreen"
           }`}
         >
-          <div className="flex items-center justify-around h-full  w-60 p-2">
+          <div className="flex relative items-center justify-around h-full  w-60 p-2">
+            {modalVisible && (
+              <div className="absolute top-20 right-10 h-60 w-72 bg-white animate-[wiggle_0.2s_ease-in-out] shadow-md p-10 rounded">
+                <p>Utilisateur : {users.username}</p>
+                <p>Email : {users.email}</p>
+                <p>Profil : {users.profil}</p>
+                <div className="w-4/5 h-1/3 border-b border-solid border-borderColor"></div>
+                <div className="p-5">
+                  <button className="bg-colorBrown text-white p-2 hover:shadow-lg rounded-lg">
+                    Déconnexion
+                  </button>
+                </div>
+              </div>
+            )}
             <CgProfile size={24} />
             <p>Bienvenue {users.username}</p>
-            <GrDown size={20} />
+            <GrDown
+              className="cursor-pointer"
+              size={20}
+              onClick={() => setModalVisible(!modalVisible)}
+            />
           </div>
         </div>
         <div className="flex w-full bg-colorBgWelcome h-5/6"></div>
