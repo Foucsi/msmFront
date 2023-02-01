@@ -66,7 +66,11 @@ export default function Welcome() {
             <CgProfile size={24} />
             <p>Bienvenue {users.username}</p>
             <GrDown
-              className="cursor-pointer"
+              className={`${
+                modalVisible
+                  ? "rotate-180 transform duration-200"
+                  : "rotate-0 transform duration-200"
+              } cursor-pointer`}
               size={20}
               onClick={() => setModalVisible(!modalVisible)}
             />
