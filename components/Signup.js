@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "@/reducers/users";
+import { useRouter } from "next/router";
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -8,6 +9,8 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [msgError, setMsgError] = useState("");
   const [selectedValue, setSelectedValue] = useState("commercial");
+
+  const router = useRouter();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -29,19 +32,32 @@ export default function Signup() {
     const data = await res.json();
 
     if (data.result) {
+      router.push("/Welcome");
+      dispatch(
+        login({
+          username: data.user.username,
+          password: data.user.passord,
+          email: data.user.email,
+          profil: data.user.profil,
+        })
+      );
       setEmail("");
       setPassword("");
       setUsername("");
+    } else if (data.error === "Missing or empty fields") {
+      setMsgError("Champs manquants ou vides");
+    } else if (data.error === "User already exists") {
+      setMsgError("L'utilisateur existe déjà");
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-around h-3/5 w-1/2">
+    <div className="flex flex-col items-center justify-around h-4/5 w-1/2">
       <p className="font-bold text-colorText text-3xl font-montserrat">
         S'enregistrer
       </p>
       <div className="flex flex-row items-center justify-around w-10/12">
-        <label htmlFor="">Profil</label>
+        <label htmlFor="">Profil:</label>
         <input
           type="radio"
           value="commercial"
@@ -93,7 +109,7 @@ export default function Signup() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <div>
+      <div className="h-8">
         <p>{msgError}</p>
       </div>
       <div className="flex items-center justify-center w-10/12">
