@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CgProfile } from "react-icons/cg";
 import { GrDown } from "react-icons/gr";
+import { logout } from "@/reducers/users";
+import { useRouter } from "next/router";
 
 export default function Welcome() {
   const [getProfil, setGetProfil] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const users = useSelector((state) => state.user.value);
+
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   /* fonction permettant de recuperer le profil de l'utilisateur et ainsi pouvoir changer le backgroundColor*/
   const fetchData = async () => {
@@ -22,6 +27,11 @@ export default function Welcome() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleDeconnexion = () => {
+    dispatch(logout());
+    router.push("/");
+  };
 
   return (
     <div className="flex h-screen w-screen">
@@ -57,7 +67,10 @@ export default function Welcome() {
                 <p>Profil : {users.profil}</p>
                 <div className="w-4/5 h-1/3 border-b border-solid border-borderColor"></div>
                 <div className="p-5">
-                  <button className="bg-colorBrown text-white p-2 hover:shadow-lg rounded-lg">
+                  <button
+                    onClick={handleDeconnexion}
+                    className="bg-colorBrown text-white p-2 hover:shadow-lg rounded-lg"
+                  >
                     Déconnexion
                   </button>
                 </div>
