@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "@/styles/Home.module.css";
+import Signin from "@/components/Signin";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -38,7 +39,9 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <div className="h-4/5 w-full"></div>
+          <div className="flex items-center justify-center h-4/5 w-full">
+            <Signin />
+          </div>
         </div>
         <div className="flex items-center justify-center h-full bg-colorBrown w-2/5">
           <div className="flex flex-col h-1/2 w-2/3 items-center justify-center">
