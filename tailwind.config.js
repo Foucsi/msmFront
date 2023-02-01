@@ -17,6 +17,9 @@ module.exports = {
         colorRed: "#FF5757",
         colorGreen: "#7ED957",
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
     },
   },
   plugins: [],
