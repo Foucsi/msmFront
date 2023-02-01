@@ -35,13 +35,15 @@ export default function Home() {
             </div>
             <div className="flex flex-row justify-around w-1/2 items-center">
               <p className="font-montserrat font-light text-colorText">
-                Vous ne possédez pas de compte ?
+                {displaySign
+                  ? "Vous ne possédez pas de compte ?"
+                  : "Vous possédez déja un compte ?"}
               </p>
               <button
-                onClick={() => setDisplaySign(false)}
+                onClick={() => setDisplaySign(!displaySign)}
                 className="text-colorText font-bold border border-solid border-colorText p-3 rounded-lg hover:shadow-lg"
               >
-                Inscription
+                {displaySign ? "Inscription" : "Connexion"}
               </button>
             </div>
           </div>

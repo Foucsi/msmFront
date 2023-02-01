@@ -15,7 +15,7 @@ export default function Signin() {
         </p>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="...."
           className="w-10/12 border p-3"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -27,7 +27,7 @@ export default function Signin() {
         </p>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="...."
           className="w-10/12 border p-3"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
