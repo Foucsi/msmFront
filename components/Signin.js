@@ -7,6 +7,7 @@ export default function Signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [msgError, setMsgError] = useState("");
+  const [displayLoader, setDisplayLoader] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -20,7 +21,12 @@ export default function Signin() {
     const data = await res.json();
 
     if (data.result) {
-      router.push("/Welcome");
+      setMsgError("");
+      setDisplayLoader(true);
+      setTimeout(() => {
+        router.push("/Welcome");
+      }, 1500);
+
       dispatch(
         login({
           username: data.user.username,
@@ -69,6 +75,7 @@ export default function Signin() {
       </div>
       <div className="h-8">
         <p>{msgError}</p>
+        {displayLoader && <img className="h-8 w-8" src="loader.gif" />}
       </div>
       <div className="flex items-center justify-center w-10/12">
         <button

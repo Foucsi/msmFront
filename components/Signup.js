@@ -9,6 +9,7 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [msgError, setMsgError] = useState("");
   const [selectedValue, setSelectedValue] = useState("commercial");
+  const [displayLoader, setDisplayLoader] = useState(false);
 
   const router = useRouter();
 
@@ -32,7 +33,12 @@ export default function Signup() {
     const data = await res.json();
 
     if (data.result) {
-      router.push("/Welcome");
+      setMsgError("");
+      setDisplayLoader(true);
+      setTimeout(() => {
+        router.push("/Welcome");
+      }, 1500);
+
       dispatch(
         login({
           username: data.user.username,
@@ -58,8 +64,11 @@ export default function Signup() {
         S'enregistrer
       </p>
       <div className="flex flex-row items-center justify-around w-10/12">
-        <label htmlFor="">Profil:</label>
+        <label htmlFor="" className="font-montserrat">
+          Profil:
+        </label>
         <input
+          className="font-montserrat"
           type="radio"
           value="commercial"
           checked={selectedValue === "commercial"}
@@ -67,6 +76,7 @@ export default function Signup() {
         />
         Commercial
         <input
+          className="font-montserrat"
           type="radio"
           value="facturation"
           checked={selectedValue === "facturation"}
@@ -112,6 +122,7 @@ export default function Signup() {
       </div>
       <div className="h-8">
         <p>{msgError}</p>
+        {displayLoader && <img className="h-8 w-8" src="loader.gif" />}
       </div>
       <div className="flex items-center justify-center w-10/12">
         <button
