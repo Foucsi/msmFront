@@ -96,10 +96,16 @@ export default function Welcome() {
                 <div className="flex flex-col justify-between absolute top-16 bg-slate-50 shadow-md h-40 w-60 p-5 rounded-md">
                   <p className="font-montserrat">Créer</p>
                   <div className="h-1/2">
-                    <div className="h-1/2 border-b border-solid border-borderColor cursor-pointer p-1 hover:bg-slate-400 font-montserrat">
+                    <div
+                      onClick={() => router.push("/Devis")}
+                      className="h-1/2 border-b border-solid border-borderColor cursor-pointer p-1 hover:bg-slate-400 font-montserrat"
+                    >
                       <p className="pb-4">Devis</p>
                     </div>
-                    <div className="h-1/2 border-b border-solid border-borderColor cursor-pointer p-1 hover:bg-slate-400 font-montserrat">
+                    <div
+                      onClick={() => router.push("/Factures")}
+                      className="h-1/2 border-b border-solid border-borderColor cursor-pointer p-1 hover:bg-slate-400 font-montserrat"
+                    >
                       <p className="pb-4">Facture</p>
                     </div>
                   </div>
