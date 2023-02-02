@@ -6,6 +6,7 @@ import { logout } from "@/reducers/users";
 import { useRouter } from "next/router";
 import { BsPlusLg } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
+import { FaUserCircle } from "react-icons/fa";
 import Acceuil from "@/components/Acceuil";
 import Factures from "@/components/Factures";
 import Devis from "@/components/Devis";
@@ -149,13 +150,7 @@ export default function Welcome() {
       </div>
       <div className="flex flex-col justify-between h-full w-3/4 ">
         <div
-          className={`flex flex-row justify-end w-full h-1/6  border-b border-solid border-borderColor p-5 ${
-            getProfil === "facturation"
-              ? "bg-colorYellow"
-              : getProfil === "administrateur"
-              ? "bg-colorRed"
-              : "bg-colorGreen"
-          }`}
+          className={`flex flex-row justify-end w-full h-1/6  border-b border-solid border-borderColor p-5 `}
         >
           <div className="flex relative items-center justify-around h-full  w-60 p-2">
             {modalVisible && (
@@ -181,7 +176,16 @@ export default function Welcome() {
                 </div>
               </div>
             )}
-            <CgProfile size={24} />
+            <FaUserCircle
+              size={32}
+              color={
+                getProfil === "facturation"
+                  ? "#FFDE59"
+                  : getProfil === "administrateur"
+                  ? "#FF5757"
+                  : "#7ED957"
+              }
+            />
             <p>
               Bienvenue{" "}
               {users.username.charAt(0).toUpperCase() + users.username.slice(1)}
