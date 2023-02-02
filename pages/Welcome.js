@@ -155,12 +155,12 @@ export default function Welcome() {
             {modalVisible && (
               <div className="absolute top-20 right-10 h-60 w-72 bg-white animate-[wiggle_0.2s_ease-in-out] shadow-md p-10 rounded">
                 <p>
-                  Utilisateur :
+                  Utilisateur :{" "}
                   {users.username.charAt(0).toUpperCase() +
                     users.username.slice(1)}
                 </p>
                 <p>Email : {users.email}</p>
-                <p>
+                <p className="font-bold">
                   Profil :{" "}
                   {users.profil.charAt(0).toUpperCase() + users.profil.slice(1)}
                 </p>
@@ -191,7 +191,12 @@ export default function Welcome() {
             />
           </div>
         </div>
-        <div className="flex w-full bg-colorBgWelcome h-5/6">{section}</div>
+        <div
+          onClick={() => setModalVisible(false)}
+          className="flex w-full bg-colorBgWelcome h-5/6"
+        >
+          {section}
+        </div>
       </div>
     </div>
   );
