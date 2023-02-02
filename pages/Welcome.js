@@ -4,6 +4,7 @@ import { CgProfile } from "react-icons/cg";
 import { GrDown } from "react-icons/gr";
 import { logout } from "@/reducers/users";
 import { useRouter } from "next/router";
+import { BsPlusLg } from "react-icons/bs";
 
 export default function Welcome() {
   const [getProfil, setGetProfil] = useState("");
@@ -47,6 +48,18 @@ export default function Welcome() {
             <p>MSM</p>
             <p>Menuiserie Sur Mesure</p>
           </div>
+        </div>
+
+        <div className="flex w-full items-center justify-evenly h-40 p-10">
+          {(users.profil === "commercial" ||
+            users.profil === "administrateur") && (
+            <div className="flex items-center w-4/5">
+              <div className="flex h-14 w-14 bg-colorBlue rounded-full cursor-pointer items-center justify-center">
+                <BsPlusLg color="white" size={22} />
+              </div>
+              <p className="text-white font-montserrat pl-4">Créer</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="flex flex-col justify-between h-full w-3/4 ">
