@@ -42,14 +42,14 @@ export default function Devis() {
             </button>
           </div>
         </div>
-        <div className="flex justify-between p-5 w-72 ">
+        <div className="flex justify-between p-5 w-96 ">
           <p
             onClick={() => handleSection("Creer")}
             className={`${
               displaySection.type.name === "CreerDevis"
                 ? "border-b-4 border-solid border-b-colorBorderLeft font-montserrat text-colorText"
                 : ""
-            } cursor-pointer`}
+            } cursor-pointer w-24 text-center pb-2`}
           >
             Créer
           </p>
@@ -59,7 +59,7 @@ export default function Devis() {
               displaySection.type.name === "ApercuDevis"
                 ? "border-b-4 border-solid border-b-colorBorderLeft font-montserrat text-colorText"
                 : ""
-            } cursor-pointer`}
+            } cursor-pointer w-24 text-center pb-2`}
           >
             Apercu
           </p>
@@ -69,7 +69,7 @@ export default function Devis() {
               displaySection.type.name === "EnvoyerDevis"
                 ? "border-b-4 border-solid border-b-colorBorderLeft font-montserrat text-colorText"
                 : ""
-            } cursor-pointer`}
+            } cursor-pointer w-24 text-center pb-2`}
           >
             Envoyer
           </p>
