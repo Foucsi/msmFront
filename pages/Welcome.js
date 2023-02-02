@@ -11,10 +11,16 @@ import Factures from "@/components/Factures";
 import Devis from "@/components/Devis";
 
 export default function Welcome() {
+  const sections = {
+    Acceuil: <Acceuil />,
+    Factures: <Factures />,
+    Devis: <Devis />,
+  };
+
   const [getProfil, setGetProfil] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   const [modalCreate, setModalCreate] = useState(false);
-  const [section, setSection] = useState(<Acceuil />);
+  const [section, setSection] = useState(sections.Acceuil);
   const users = useSelector((state) => state.user.value);
 
   const dispatch = useDispatch();
@@ -33,17 +39,12 @@ export default function Welcome() {
 
   useEffect(() => {
     fetchData();
+    // console.log("Section: ", section.type.name);
   }, []);
 
   const handleDeconnexion = () => {
     dispatch(logout());
     router.push("/");
-  };
-
-  const sections = {
-    Acceuil: <Acceuil />,
-    Factures: <Factures />,
-    Devis: <Devis />,
   };
 
   const displaySection = (section) => {
@@ -110,19 +111,31 @@ export default function Welcome() {
         <div className="flex flex-col font-montserrat text-white h-48 p-5 justify-evenly pl-20">
           <p
             onClick={() => displaySection("Acceuil")}
-            className="hover:bg-colorBrownSecond p-2 cursor-pointer border-b border-solid border-colorBrownSecond"
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Acceuil"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
           >
             Acceuil
           </p>
           <p
             onClick={() => displaySection("Factures")}
-            className="hover:bg-colorBrownSecond p-2 cursor-pointer border-b border-solid border-colorBrownSecond"
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Factures"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
           >
             Factures
           </p>
           <p
             onClick={() => displaySection("Devis")}
-            className="hover:bg-colorBrownSecond p-2 cursor-pointer border-b border-solid border-colorBrownSecond"
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Devis"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
           >
             Devis
           </p>
