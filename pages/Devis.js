@@ -23,7 +23,7 @@ export default function Devis() {
   const router = useRouter();
   return (
     <div className="flex flex-col w-screen h-screen">
-      <div className="flex flex-col justify-between bg-colorBgWelcome p-5">
+      <div className="flex flex-col justify-between bg-colorBgWelcome p-5 pt-10">
         <div className="flex items-center justify-between w-full h-1/5 ">
           <div className="flex items-center justify-evenly w-48">
             <BsArrowLeftShort
@@ -37,8 +37,8 @@ export default function Devis() {
             </p>
           </div>
           <div>
-            <button className="bg-colorBlue text-white py-3 px-5 rounded-lg hover:shadow-md font-montserrat hover:opacity-95">
-              Fermer
+            <button className="bg-colorBlue text-white py-3 px-5 rounded-lg hover:shadow-md font-montserrat hover:opacity-95 w-52">
+              ok
             </button>
           </div>
         </div>
