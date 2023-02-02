@@ -5,10 +5,16 @@ import { GrDown } from "react-icons/gr";
 import { logout } from "@/reducers/users";
 import { useRouter } from "next/router";
 import { BsPlusLg } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
+import Acceuil from "@/components/Acceuil";
+import Factures from "@/components/Factures";
+import Devis from "@/components/Devis";
 
 export default function Welcome() {
   const [getProfil, setGetProfil] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalCreate, setModalCreate] = useState(false);
+  const [section, setSection] = useState(<Acceuil />);
   const users = useSelector((state) => state.user.value);
 
   const dispatch = useDispatch();
@@ -34,6 +40,22 @@ export default function Welcome() {
     router.push("/");
   };
 
+  const sections = {
+    Acceuil: <Acceuil />,
+    Factures: <Factures />,
+    Devis: <Devis />,
+  };
+
+  const displaySection = (section) => {
+    setSection(sections[section] || null);
+  };
+
+  /*Lorsque la fonction displaySection est appelée avec une section donnée, 
+  elle utilise l'opérateur de résolution de propriété ([]) pour trouver le composant correspondant. 
+  Si la section ne se trouve pas dans l'objet sections, sections[section] renvoie undefined, 
+  ce qui est géré en utilisant un opérateur || pour définir la valeur 
+  retournée sur null au cas où aucun composant n'est trouvé. */
+
   return (
     <div className="flex h-screen w-screen">
       <div className="flex flex-col h-full w-1/4 bg-colorBrown">
@@ -53,13 +75,57 @@ export default function Welcome() {
         <div className="flex w-full items-center justify-evenly h-40 p-10">
           {(users.profil === "commercial" ||
             users.profil === "administrateur") && (
-            <div className="flex items-center w-4/5">
-              <div className="flex h-14 w-14 bg-colorBlue rounded-full cursor-pointer items-center justify-center">
-                <BsPlusLg color="white" size={22} />
+            <div className="flex relative items-center w-4/5">
+              <div
+                onClick={() => setModalCreate(!modalCreate)}
+                className="flex h-14 w-14 bg-colorBlue rounded-full cursor-pointer items-center justify-center shadow-md"
+              >
+                <BsPlusLg
+                  className={`${
+                    modalCreate
+                      ? "rotate-45 duration-200"
+                      : "rotate-0 duration-200"
+                  }`}
+                  color="white"
+                  size={22}
+                />
               </div>
               <p className="text-white font-montserrat pl-4">Créer</p>
+              {modalCreate && (
+                <div className="flex flex-col justify-between absolute top-16 bg-slate-50 shadow-md h-40 w-60 p-5 rounded-md">
+                  <p className="font-montserrat">Créer</p>
+                  <div className="h-1/2">
+                    <div className="h-1/2 border-b border-solid border-borderColor cursor-pointer p-1 hover:bg-slate-400 font-montserrat">
+                      <p className="pb-4">Devis</p>
+                    </div>
+                    <div className="h-1/2 border-b border-solid border-borderColor cursor-pointer p-1 hover:bg-slate-400 font-montserrat">
+                      <p className="pb-4">Facture</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
+        </div>
+        <div className="flex flex-col font-montserrat text-white h-48 p-5 justify-evenly pl-20">
+          <p
+            onClick={() => displaySection("Acceuil")}
+            className="hover:bg-colorBrownSecond p-2 cursor-pointer border-b border-solid border-colorBrownSecond"
+          >
+            Acceuil
+          </p>
+          <p
+            onClick={() => displaySection("Factures")}
+            className="hover:bg-colorBrownSecond p-2 cursor-pointer border-b border-solid border-colorBrownSecond"
+          >
+            Factures
+          </p>
+          <p
+            onClick={() => displaySection("Devis")}
+            className="hover:bg-colorBrownSecond p-2 cursor-pointer border-b border-solid border-colorBrownSecond"
+          >
+            Devis
+          </p>
         </div>
       </div>
       <div className="flex flex-col justify-between h-full w-3/4 ">
@@ -102,7 +168,7 @@ export default function Welcome() {
             />
           </div>
         </div>
-        <div className="flex w-full bg-colorBgWelcome h-5/6"></div>
+        <div className="flex w-full bg-colorBgWelcome h-5/6">{section}</div>
       </div>
     </div>
   );
