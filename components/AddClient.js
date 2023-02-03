@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
-export default function AddClient() {
+export default function AddClient({ setDisplayFormClient }) {
   const [nom, setNom] = useState("");
   const [portable, setPortable] = useState("");
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ export default function AddClient() {
       }),
     });
     const data = await res.json();
-    console.log(data.result);
+    setDisplayFormClient(false);
   };
 
   return (
@@ -67,7 +67,7 @@ export default function AddClient() {
           onChange={(e) => setAdresse(e.target.value)}
         />
       </div>
-      <button onClick={() => handleSubmit()}>click</button>
+      <button onClick={() => handleSubmit()}>valider</button>
     </div>
   );
 }

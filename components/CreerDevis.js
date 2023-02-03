@@ -16,7 +16,7 @@ export default function CreerDevis() {
           </div>
           <div className="flex w-full h-full pl-10 ">
             {displayFormClient ? (
-              <AddClient />
+              <AddClient setDisplayFormClient={setDisplayFormClient} />
             ) : (
               <div
                 onClick={() => setDisplayFormClient(true)}
