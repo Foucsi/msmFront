@@ -16,7 +16,7 @@ export default function Signin() {
     const res = await fetch("http://localhost:3000/users/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username: username, password: password }),
     });
     const data = await res.json();
 
@@ -30,7 +30,6 @@ export default function Signin() {
       dispatch(
         login({
           username: data.user.username,
-          password: data.user.password,
           email: data.user.email,
           profil: data.user.profil,
           token: data.user.token,

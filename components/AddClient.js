@@ -6,6 +6,7 @@ export default function AddClient({ setDisplayFormClient }) {
   const [portable, setPortable] = useState("");
   const [email, setEmail] = useState("");
   const [adresse, setAdresse] = useState("");
+  const [msgError, setMsgError] = useState("error");
 
   const users = useSelector((state) => state.user.value);
 
@@ -22,11 +23,16 @@ export default function AddClient({ setDisplayFormClient }) {
       }),
     });
     const data = await res.json();
-    setDisplayFormClient(false);
+    if (data.result) {
+      setDisplayFormClient(false);
+    } else if (data.error === "Missing or empty fields") {
+      setMsgError("Champs manquants ou vides");
+    }
   };
 
   return (
-    <div className="flex flex-col font-montserrat text-colorText h-full w-full justify-center">
+    <div className="flex flex-col font-montserrat text-colorText h-full w-full justify-center pb-5">
+      <p>{msgError}</p>
       <div className="flex w-full text-lg pb-5">
         <p className="pr-5 w-1/6">Nom du client</p>
         <input
@@ -67,7 +73,13 @@ export default function AddClient({ setDisplayFormClient }) {
           onChange={(e) => setAdresse(e.target.value)}
         />
       </div>
-      <button onClick={() => handleSubmit()}>valider</button>
+
+      <button
+        className="bg-colorBlue text-white py-1 px-5 rounded-lg hover:shadow-md font-montserrat hover:opacity-95 w-36"
+        onClick={() => handleSubmit()}
+      >
+        valider
+      </button>
     </div>
   );
 }

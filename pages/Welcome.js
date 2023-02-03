@@ -10,6 +10,7 @@ import { FaUserCircle } from "react-icons/fa";
 import Acceuil from "@/components/Acceuil";
 import Factures from "@/components/Factures";
 import Devis from "@/components/Devis";
+import { login } from "@/reducers/users";
 
 export default function Welcome() {
   const sections = {
@@ -28,20 +29,19 @@ export default function Welcome() {
   const router = useRouter();
 
   /* fonction permettant de recuperer le profil de l'utilisateur et ainsi pouvoir changer le backgroundColor*/
-  const fetchData = async () => {
-    const res = await fetch(
-      `http://localhost:3000/users/getProfilByToken/${users.token}`
-    );
-    const data = await res.json();
-    {
-      data.result && setGetProfil(data.profil);
-    }
-  };
 
-  useEffect(() => {
-    fetchData();
-    // console.log("Section: ", section.type.name);
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await fetch(
+  //       `http://localhost:3000/users/getProfilByToken/${users.token}`
+  //     );
+  //     const data = await res.json();
+  //     if (data.result) {
+  //       setGetProfil(data.profil);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handleDeconnexion = () => {
     // dispatch(logout());
@@ -155,16 +155,9 @@ export default function Welcome() {
           <div className="flex relative items-center justify-around h-full  w-60 p-2">
             {modalVisible && (
               <div className="absolute top-20 right-10 h-60 w-72 bg-white animate-[wiggle_0.2s_ease-in-out] shadow-md p-10 rounded">
-                <p>
-                  Utilisateur :{" "}
-                  {users.username.charAt(0).toUpperCase() +
-                    users.username.slice(1)}
-                </p>
+                <p>Utilisateur : {users.username}</p>
                 <p>Email : {users.email}</p>
-                <p className="font-bold">
-                  Profil :{" "}
-                  {users.profil.charAt(0).toUpperCase() + users.profil.slice(1)}
-                </p>
+                <p className="font-bold">Profil : {users.profil}</p>
                 <div className="w-4/5 h-1/3 border-b border-solid border-borderColor"></div>
                 <div className="p-5">
                   <button
@@ -179,17 +172,14 @@ export default function Welcome() {
             <FaUserCircle
               size={32}
               color={
-                getProfil === "facturation"
+                users.profil === "facturation"
                   ? "#FFDE59"
-                  : getProfil === "administrateur"
+                  : users.profil === "administrateur"
                   ? "#FF5757"
                   : "#7ED957"
               }
             />
-            <p>
-              Bienvenue{" "}
-              {users.username.charAt(0).toUpperCase() + users.username.slice(1)}
-            </p>
+            <p>Bienvenue {users.username}</p>
             <GrDown
               className={`${
                 modalVisible
