@@ -57,7 +57,17 @@ export default function Devis() {
         )}
       </div>
       <div className="flex items-center justify-center w-full h-5/6 ">
-        {listingDevis.length === 0 ? (
+        {listingDevis ? (
+          <div className="w-full h-full">
+            <div className="flex items-center justify-around w-full h-8 bg-slate-300">
+              <p className="w-1/4 text-center">Numéro</p>
+              <p className="w-1/4 text-center">Clients</p>
+              <p className="w-1/4 text-center">Date</p>
+              <p className="w-1/4 text-center">Statut</p>
+            </div>
+            {elmtDevis}
+          </div>
+        ) : (
           <div className="flex flex-col items-center justify-around h-96">
             <FcCalculator size={172} />
             <p className="font-montserrat text-colorText text-xl">
@@ -74,16 +84,6 @@ export default function Devis() {
                 </button>
               )}
             </div>
-          </div>
-        ) : (
-          <div className="w-full h-full">
-            <div className="flex items-center justify-around w-full h-8 bg-slate-300">
-              <p className="w-1/4 text-center">Numéro</p>
-              <p className="w-1/4 text-center">Clients</p>
-              <p className="w-1/4 text-center">Date</p>
-              <p className="w-1/4 text-center">Statut</p>
-            </div>
-            {elmtDevis}
           </div>
         )}
       </div>
