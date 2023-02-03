@@ -6,7 +6,8 @@ export default function AddClient({ setDisplayFormClient }) {
   const [portable, setPortable] = useState("");
   const [email, setEmail] = useState("");
   const [adresse, setAdresse] = useState("");
-  const [msgError, setMsgError] = useState("error");
+  const [msgError, setMsgError] = useState("");
+  const [numberDevis, setNumberDevis] = useState(1);
 
   const users = useSelector((state) => state.user.value);
 
@@ -19,14 +20,14 @@ export default function AddClient({ setDisplayFormClient }) {
         tel: portable,
         email: email,
         adress: adresse,
-        numero: 2,
+        numero: numberDevis,
       }),
     });
     const data = await res.json();
     if (data.result) {
       setDisplayFormClient(false);
     } else if (data.error === "Missing or empty fields") {
-      setMsgError("Champs manquants ou vides");
+      setMsgError("Veuillez saisir le nom du client!");
     }
   };
 
