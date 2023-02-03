@@ -155,9 +155,16 @@ export default function Welcome() {
           <div className="flex relative items-center justify-around h-full  w-60 p-2">
             {modalVisible && (
               <div className="absolute top-20 right-10 h-60 w-72 bg-white animate-[wiggle_0.2s_ease-in-out] shadow-md p-10 rounded">
-                <p>Utilisateur : {users.username}</p>
+                <p>
+                  Utilisateur :{" "}
+                  {users.username.charAt(0).toUpperCase() +
+                    users.username.slice(1)}
+                </p>
                 <p>Email : {users.email}</p>
-                <p className="font-bold">Profil : {users.profil}</p>
+                <p className="font-bold">
+                  Profil :{" "}
+                  {users.profil.charAt(0).toUpperCase() + users.profil.slice(1)}
+                </p>
                 <div className="w-4/5 h-1/3 border-b border-solid border-borderColor"></div>
                 <div className="p-5">
                   <button
@@ -179,7 +186,10 @@ export default function Welcome() {
                   : "#7ED957"
               }
             />
-            <p>Bienvenue {users.username}</p>
+            <p>
+              Bienvenue{" "}
+              {users.username.charAt(0).toUpperCase() + users.username.slice(1)}
+            </p>
             <GrDown
               className={`${
                 modalVisible
