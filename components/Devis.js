@@ -33,6 +33,7 @@ export default function Devis() {
         key={index}
         className="flex items-center justify-around bg-white mt-1 p-1 font-montserrat text-colorText"
       >
+        <p className="w-1/4 text-center">{devis.user}</p>
         <p className="w-1/4 text-center">{devis.numero}</p>
         <p className="w-1/4 text-center">{devis.name}</p>
         <p className="w-1/4 text-center">{devis.createdAt.substring(0, 10)}</p>
@@ -60,6 +61,7 @@ export default function Devis() {
         {listingDevis.length > 0 ? (
           <div className="w-full h-full">
             <div className="flex items-center justify-around w-full h-8 bg-slate-300 font-montserrat text-colorText">
+              <p className="w-1/4 text-center">Créateur</p>
               <p className="w-1/4 text-center">Numéro</p>
               <p className="w-1/4 text-center">Clients</p>
               <p className="w-1/4 text-center">Date</p>
