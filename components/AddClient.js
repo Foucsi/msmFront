@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function AddClient({ setDisplayFormClient }) {
@@ -7,9 +7,20 @@ export default function AddClient({ setDisplayFormClient }) {
   const [email, setEmail] = useState("");
   const [adresse, setAdresse] = useState("");
   const [msgError, setMsgError] = useState("");
-  const [numberDevis, setNumberDevis] = useState(1);
+  const [numberDevis, setNumberDevis] = useState();
 
   const users = useSelector((state) => state.user.value);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:3000/devis/getNumberArray");
+      const data = await res.json();
+      {
+        data.result && setNumberDevis(data.lengthArray + 1);
+      }
+    };
+    fetchData();
+  }, []);
 
   const handleSubmit = async () => {
     const res = await fetch(`http://localhost:3000/devis/${users.token}`, {
