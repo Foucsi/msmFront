@@ -6,13 +6,7 @@ import { useRouter } from "next/router";
 export default function Devis() {
   const [listingDevis, setListingDevis] = useState([]);
   const users = useSelector((state) => state.user.value);
-  const options = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-
+  const router = useRouter();
   const fetchData = async () => {
     const res = await fetch(`http://localhost:3000/devis/getAllDevis`);
     const data = await res.json();
@@ -27,10 +21,22 @@ export default function Devis() {
   }, []);
 
   const elmtDevis = listingDevis.map((devis, index) => {
+    const handleClick = () => {
+      router.push({
+        pathname: "/Devis",
+        query: {
+          user: devis.user,
+          numero: devis.numero,
+          client: devis.name,
+          date: devis.createdAt.substring(0, 10),
+        },
+      });
+    };
     return (
       <div
+        onClick={handleClick}
         key={index}
-        className="flex items-center justify-around bg-white mt-1 p-1 font-montserrat text-colorText"
+        className="flex items-center justify-around rounded bg-white mt-1 p-1 font-montserrat text-colorText cursor-pointer hover:opacity-60"
       >
         <p className="w-1/4 text-center">{devis.user}</p>
         <p className="w-1/4 text-center">{devis.numero}</p>
@@ -41,7 +47,6 @@ export default function Devis() {
     );
   });
 
-  const router = useRouter();
   return (
     <div className="w-full h-full p-5">
       <div className="flex items-center justify-between w-full p-5 border-b-2 border-borderColor">

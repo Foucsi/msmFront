@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function PDFFile({ user }) {
+export default function PDFFile({ user, numero, client, date }) {
   return (
     <Document>
       <Page>
@@ -42,6 +42,9 @@ export default function PDFFile({ user }) {
         </View>
         <View>
           <Text>Créateur : {user}</Text>
+          <Text>Numéro devis : {numero}</Text>
+          <Text>Client : {client}</Text>
+          <Text>Date : {date}</Text>
         </View>
 
         {({ pageNumber, totalPages }) => (

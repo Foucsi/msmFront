@@ -7,10 +7,14 @@ import EnvoyerDevis from "@/components/EnvoyerDevis";
 import { useSelector } from "react-redux";
 
 export default function Devis() {
-  const users = useSelector((state) => state.user.value);
+  const router = useRouter();
+  const { user, numero, client, date } = router.query;
+
   const sections = {
     Creer: <CreerDevis />,
-    Apercu: <ApercuDevis user={users.username} />,
+    Apercu: (
+      <ApercuDevis user={user} numero={numero} client={client} date={date} />
+    ),
     Envoyer: <EnvoyerDevis />,
   };
 
@@ -20,7 +24,6 @@ export default function Devis() {
     setDisplaySection(sections[section] || null);
   };
 
-  const router = useRouter();
   return (
     <div className="flex flex-col w-screen h-screen">
       <div className="flex flex-col justify-between bg-colorBgWelcome p-5 pt-10">
