@@ -27,7 +27,6 @@ export default function Devis() {
   }, []);
 
   const elmtDevis = listingDevis.map((devis, index) => {
-    console.log(typeof devis.createdAt);
     return (
       <div
         key={index}

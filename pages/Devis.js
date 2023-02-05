@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 import CreerDevis from "@/components/CreerDevis";
 import ApercuDevis from "@/components/ApercuDevis";
 import EnvoyerDevis from "@/components/EnvoyerDevis";
+import { useSelector } from "react-redux";
 
 export default function Devis() {
+  const users = useSelector((state) => state.user.value);
   const sections = {
     Creer: <CreerDevis />,
-    Apercu: <ApercuDevis />,
+    Apercu: <ApercuDevis user={users.username} />,
     Envoyer: <EnvoyerDevis />,
   };
 
@@ -17,8 +19,6 @@ export default function Devis() {
   const handleSection = (section) => {
     setDisplaySection(sections[section] || null);
   };
-
-  console.log(displaySection);
 
   const router = useRouter();
   return (

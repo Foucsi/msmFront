@@ -2,10 +2,10 @@ import React from "react";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDFFile from "./PDFFile";
 
-export default function ApercuDevis() {
+export default function ApercuDevis({ user }) {
   return (
     <div>
-      <PDFDownloadLink document={<PDFFile />} fileName="FORM">
+      <PDFDownloadLink document={<PDFFile user={user} />} fileName="FORM">
         {({ loading }) =>
           loading ? (
             <button>Loading document</button>
