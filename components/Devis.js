@@ -29,6 +29,7 @@ export default function Devis() {
           numero: devis.numero,
           client: devis.name,
           date: devis.createdAt.substring(0, 10),
+          adress: devis.adress,
         },
       });
     };

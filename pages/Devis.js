@@ -8,12 +8,18 @@ import { useSelector } from "react-redux";
 
 export default function Devis() {
   const router = useRouter();
-  const { user, numero, client, date } = router.query;
+  const { user, numero, client, date, adress } = router.query;
 
   const sections = {
     Creer: <CreerDevis />,
     Apercu: (
-      <ApercuDevis user={user} numero={numero} client={client} date={date} />
+      <ApercuDevis
+        user={user}
+        numero={numero}
+        client={client}
+        date={date}
+        adress={adress}
+      />
     ),
     Envoyer: <EnvoyerDevis />,
   };
@@ -79,7 +85,7 @@ export default function Devis() {
         </div>
       </div>
 
-      <div className="w-full h-4/5 p-5">{displaySection}</div>
+      <div className="w-full p-5 h-screen">{displaySection}</div>
     </div>
   );
 }
