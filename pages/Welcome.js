@@ -30,19 +30,6 @@ export default function Welcome() {
 
   /* fonction permettant de recuperer le profil de l'utilisateur et ainsi pouvoir changer le backgroundColor*/
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const res = await fetch(
-  //       `http://localhost:3000/users/getProfilByToken/${users.token}`
-  //     );
-  //     const data = await res.json();
-  //     if (data.result) {
-  //       setGetProfil(data.profil);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
   const handleDeconnexion = () => {
     // dispatch(logout());
     router.push("/");
