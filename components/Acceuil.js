@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Acceuil() {
+  const [numberDevis, setNumberDevis] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("http://localhost:3000/devis/getNumberArray");
+      const data = await res.json();
+      {
+        data && setNumberDevis(data.lengthArray);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="w-full h-full p-5">
       <div className="w-full  p-5">
@@ -43,7 +56,7 @@ export default function Acceuil() {
           </div>
           <div className="flex flex-col justify-evenly w-5/12 h-28 bg-white  rounded-lg shadow-xl p-5 cursor-pointer">
             <p className="text-sm font-montserrat text-colorText">
-              DEVIS EN ATTENTE (0)
+              DEVIS EN ATTENTE ({numberDevis ? numberDevis : 0})
             </p>
             <p className="text-xl">0,00 €</p>
           </div>
