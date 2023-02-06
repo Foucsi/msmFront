@@ -8,6 +8,9 @@ export default function Devis() {
   // ci dessous un tableau d'etat pour gerer sur une liste de devis
   const [visibilityStates, setVisibilityStates] = useState([]);
   const [listingDevis, setListingDevis] = useState([]);
+  const [msgErrorDelete, setMsgErrorDelete] = useState(
+    "Vous n'etes pas autorisé a effectuer cette action"
+  );
   const users = useSelector((state) => state.user.value);
   const router = useRouter();
 
@@ -54,6 +57,10 @@ export default function Devis() {
     const data = await res.json();
     if (data.result) {
       fetchData();
+    } else if (
+      data.error === "Vous n'etes pas autorisé a effectuer cette action"
+    ) {
+      alert(msgErrorDelete);
     }
   };
 
@@ -100,6 +107,9 @@ export default function Devis() {
                 <p className="w-full hover:bg-colorBrownSecond p-1">
                   Convertir en facture
                 </p>
+
+                <p className="w-full hover:bg-colorBrownSecond p-1">Envoyer</p>
+                <p className="w-full hover:bg-colorBrownSecond p-1">Imprimer</p>
                 {users.profil === "facturation" ? (
                   ""
                 ) : (
@@ -110,8 +120,6 @@ export default function Devis() {
                     Supprimer
                   </p>
                 )}
-                <p className="w-full hover:bg-colorBrownSecond p-1">Envoyer</p>
-                <p className="w-full hover:bg-colorBrownSecond p-1">Imprimer</p>
               </div>
             )}
           </div>
