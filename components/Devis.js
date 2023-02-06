@@ -49,6 +49,12 @@ export default function Devis() {
   }, []);
 
   const handleDelete = async (idDevis) => {
+    const confirmation = window.confirm(
+      "Êtes-vous sûr de vouloir supprimer ce devis ?"
+    );
+    if (!confirmation) {
+      return;
+    }
     const res = await fetch("http://localhost:3000/devis/deleteDevis", {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -91,7 +97,7 @@ export default function Devis() {
         <p className="w-1/4 text-center">Non envoyé</p>
         <div className="flex w-1/4 items-center justify-center">
           <div
-            className=" bg-slate-500 p-1 hover:shadow-sm"
+            className="p-1 hover:shadow-sm bg-colorCross"
             onClick={() => handleVisibilityChange(index)}
           >
             <GrDown
@@ -100,21 +106,21 @@ export default function Devis() {
                   ? "rotate-180 transform duration-200"
                   : "rotate-0 transform duration-200"
               } cursor-pointer`}
-              size={20}
+              size={16}
             />
             {visibilityStates[index] && (
               <div className="flex flex-col items-start justify-around z-50 absolute  bg-white shadow-md h-32 w-34  right-24 font-montserrat">
-                <p className="w-full hover:bg-colorBrownSecond p-1">
+                <p className="w-full hover:bg-colorCross p-1">
                   Convertir en facture
                 </p>
 
-                <p className="w-full hover:bg-colorBrownSecond p-1">Envoyer</p>
-                <p className="w-full hover:bg-colorBrownSecond p-1">Imprimer</p>
+                <p className="w-full hover:bg-colorCross p-1">Envoyer</p>
+                <p className="w-full hover:bg-colorCross p-1">Imprimer</p>
                 {users.profil === "facturation" ? (
                   ""
                 ) : (
                   <p
-                    className="w-full hover:bg-colorBrownSecond p-1 text-colorRed"
+                    className="w-full hover:bg-colorCross p-1 text-colorRed"
                     onClick={() => handleDelete(devis._id)}
                   >
                     Supprimer
@@ -129,7 +135,7 @@ export default function Devis() {
   });
 
   return (
-    <div className="w-full h-full p-5">
+    <div className="relative w-full h-full p-5">
       <div className="flex items-center justify-between w-full p-5 border-b-2 border-borderColor">
         <h1 className="text-3xl font-montserrat text-colorText">Devis</h1>
         {(users.profil === "commercial" ||

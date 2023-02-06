@@ -23,6 +23,7 @@ module.exports = {
         colorBorderLeft: "#FC3307",
         colorBorderBottomDevis: "#76635F",
         colorBgAdressDevis: "#F0EDED",
+        colorCross: "#F2F2F4",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
