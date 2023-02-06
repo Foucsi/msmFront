@@ -46,6 +46,8 @@ export default function Devis() {
     fetchData();
   }, []);
 
+  const handleDelete = () => {};
+
   const elmtDevis = listingDevis.map((devis, index) => {
     const handleClick = () => {
       router.push({
@@ -62,7 +64,7 @@ export default function Devis() {
     return (
       <div
         key={index}
-        className="flex items-center justify-around rounded bg-white mt-1 p-1 font-montserrat text-colorText cursor-pointer hover:opacity-60"
+        className="z-50 backdrop:relative flex items-center justify-around rounded bg-white mt-1 p-1 font-montserrat text-colorText cursor-pointer "
       >
         <p className="w-1/4 text-center" onClick={handleClick}>
           {devis.user}
@@ -84,6 +86,18 @@ export default function Devis() {
               } cursor-pointer`}
               size={20}
             />
+            {visibilityStates[index] && (
+              <div className="flex flex-col items-start justify-around z-50 absolute  bg-white shadow-md h-32 w-34  right-24 font-montserrat">
+                <p className="w-full hover:bg-colorBrownSecond p-1">
+                  Convertir en facture
+                </p>
+                <p className="w-full hover:bg-colorBrownSecond p-1">
+                  Supprimer
+                </p>
+                <p className="w-full hover:bg-colorBrownSecond p-1">Envoyer</p>
+                <p className="w-full hover:bg-colorBrownSecond p-1">Imprimer</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
