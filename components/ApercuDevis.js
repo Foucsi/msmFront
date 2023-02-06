@@ -22,9 +22,11 @@ export default function ApercuDevis({ user, client, numero, date, adress }) {
           loading ? (
             <button>Loading document</button>
           ) : (
-            <button className="pb-2 bg-colorBlue text-white rounded p-1">
-              Download
-            </button>
+            <div className="pb-2 font-montserrat">
+              <button className="flex items-center justify-center pb-2 bg-colorBlue text-white rounded p-1 hover:opacity-80">
+                Télécharger en PDF
+              </button>
+            </div>
           )
         }
       </PDFDownloadLink>
@@ -36,7 +38,7 @@ export default function ApercuDevis({ user, client, numero, date, adress }) {
             <span className="text-colorBrownSecond">Menuiserie Sur Mesure</span>
           </h1>
         </div>
-        <div className="flex w-full p-5 h-48">
+        <div className="flex w-full p-2 h-52 bg-colorBgAdressDevis ">
           <div className="flex flex-col h-full w-1/2 p-2 text-xs">
             <p>Devis n° : {numero}</p>
             <p>Date : {date}</p>
