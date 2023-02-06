@@ -7,6 +7,7 @@ const initialState = {
     password: null,
     email: null,
     profil: null,
+    devis: [],
   },
 };
 
@@ -30,5 +31,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, addDevis } = userSlice.actions;
 export default userSlice.reducer;

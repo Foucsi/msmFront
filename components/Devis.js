@@ -32,7 +32,6 @@ export default function Devis() {
   //     prevStates.map((visibility, i) => (i === index ? !visibility : visibility))
   //   );
   // };
-
   const fetchData = async () => {
     const res = await fetch(`http://localhost:3000/devis/getAllDevis`);
     const data = await res.json();
@@ -46,7 +45,17 @@ export default function Devis() {
     fetchData();
   }, []);
 
-  const handleDelete = () => {};
+  const handleDelete = async (idDevis) => {
+    const res = await fetch("http://localhost:3000/devis/deleteDevis", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: users.token, devisId: idDevis }),
+    });
+    const data = await res.json();
+    if (data.result) {
+      fetchData();
+    }
+  };
 
   const elmtDevis = listingDevis.map((devis, index) => {
     const handleClick = () => {
@@ -91,9 +100,16 @@ export default function Devis() {
                 <p className="w-full hover:bg-colorBrownSecond p-1">
                   Convertir en facture
                 </p>
-                <p className="w-full hover:bg-colorBrownSecond p-1">
-                  Supprimer
-                </p>
+                {users.profil === "facturation" ? (
+                  ""
+                ) : (
+                  <p
+                    className="w-full hover:bg-colorBrownSecond p-1 text-colorRed"
+                    onClick={() => handleDelete(devis._id)}
+                  >
+                    Supprimer
+                  </p>
+                )}
                 <p className="w-full hover:bg-colorBrownSecond p-1">Envoyer</p>
                 <p className="w-full hover:bg-colorBrownSecond p-1">Imprimer</p>
               </div>
