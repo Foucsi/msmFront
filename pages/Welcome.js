@@ -141,7 +141,7 @@ export default function Welcome() {
         >
           <div className="flex relative items-center justify-around h-full  w-60 p-2">
             {modalVisible && (
-              <div className="absolute top-20 right-10 h-60 w-72 bg-white animate-[wiggle_0.2s_ease-in-out] shadow-md p-10 rounded">
+              <div className="z-50 absolute top-20 right-10 h-60 w-80 bg-white animate-[wiggle_0.2s_ease-in-out] shadow-md p-10 rounded">
                 <p>
                   Utilisateur :{" "}
                   {users.username.charAt(0).toUpperCase() +
