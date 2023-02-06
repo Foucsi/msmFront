@@ -2,11 +2,37 @@ import React, { useEffect, useState } from "react";
 import { FcCalculator } from "react-icons/fc";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { GrDown } from "react-icons/gr";
 
 export default function Devis() {
+  // ci dessous un tableau d'etat pour gerer sur une liste de devis
+  const [visibilityStates, setVisibilityStates] = useState([]);
   const [listingDevis, setListingDevis] = useState([]);
   const users = useSelector((state) => state.user.value);
   const router = useRouter();
+
+  const handleVisibilityChange = (index) => {
+    //fonction qui permet de mettre à jour l'état de visibilityStates
+    //Elle prend en entrée un index,
+    //qui représente l'index de l'élément dans le tableau pour lequel la visibilité doit être mise à jour.
+    setVisibilityStates((prevStates) => {
+      //Lors de la mise à jour,
+      //setVisibilityStates appelle une fonction qui retourne une nouvelle version de l'état
+      //précédent en inversant la valeur de l'élément correspondant à l'index donné.
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index];
+      return newStates;
+    });
+  };
+
+  //Autre possibilité de faire ce code d'une autre facons ci dessous
+
+  // const handleVisibilityChange = (index) => {
+  //   setVisibilityStates(prevStates =>
+  //     prevStates.map((visibility, i) => (i === index ? !visibility : visibility))
+  //   );
+  // };
+
   const fetchData = async () => {
     const res = await fetch(`http://localhost:3000/devis/getAllDevis`);
     const data = await res.json();
@@ -35,15 +61,31 @@ export default function Devis() {
     };
     return (
       <div
-        onClick={handleClick}
         key={index}
         className="flex items-center justify-around rounded bg-white mt-1 p-1 font-montserrat text-colorText cursor-pointer hover:opacity-60"
       >
-        <p className="w-1/4 text-center">{devis.user}</p>
+        <p className="w-1/4 text-center" onClick={handleClick}>
+          {devis.user}
+        </p>
         <p className="w-1/4 text-center">{devis.numero}</p>
         <p className="w-1/4 text-center">{devis.name}</p>
         <p className="w-1/4 text-center">{devis.createdAt.substring(0, 10)}</p>
         <p className="w-1/4 text-center">Non envoyé</p>
+        <div className="flex w-1/4 items-center justify-center">
+          <div
+            className=" bg-slate-500 p-1 hover:shadow-sm"
+            onClick={() => handleVisibilityChange(index)}
+          >
+            <GrDown
+              className={`${
+                visibilityStates[index]
+                  ? "rotate-180 transform duration-200"
+                  : "rotate-0 transform duration-200"
+              } cursor-pointer`}
+              size={20}
+            />
+          </div>
+        </div>
       </div>
     );
   });
@@ -71,6 +113,7 @@ export default function Devis() {
               <p className="w-1/4 text-center">Clients</p>
               <p className="w-1/4 text-center">Date</p>
               <p className="w-1/4 text-center">Statut</p>
+              <p className="w-1/4 text-center">Actions</p>
             </div>
             {elmtDevis}
           </div>
