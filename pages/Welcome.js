@@ -11,8 +11,24 @@ import Acceuil from "@/components/Acceuil";
 import Factures from "@/components/Factures";
 import Devis from "@/components/Devis";
 import { login } from "@/reducers/users";
+import * as XLSX from "xlsx";
 
 export default function Welcome() {
+  const [file, setFile] = useState(null);
+
+  const handleFile = (e) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const data = e.target.result;
+      const workbook = XLSX.read(data, { type: "binary" });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      console.log("file: ", XLSX.utils.sheet_to_json(worksheet));
+    };
+    reader.readAsBinaryString(e.target.files[0]);
+    setFile(e.target.files[0]);
+  };
+
   const sections = {
     Acceuil: <Acceuil />,
     Factures: <Factures />,
@@ -47,6 +63,9 @@ export default function Welcome() {
 
   return (
     <div className="flex h-screen w-screen">
+      <div>
+        <input type="file" onChange={handleFile} />
+      </div>
       <div className="flex flex-col h-full w-1/4 bg-colorBrown">
         <div className="flex w-full items-center justify-evenly h-40">
           <img
