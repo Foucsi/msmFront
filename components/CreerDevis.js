@@ -7,7 +7,7 @@ import AddClient from "./AddClient";
 export default function CreerDevis() {
   const [displayFormClient, setDisplayFormClient] = useState(false);
   return (
-    <div className="flex w-full h-full ">
+    <div className="flex w-full h-full justify-around ">
       <div className="flex flex-col h-full w-8/12 shadow-md">
         <div className={`w-full ${displayFormClient ? "h-full" : "h-2/5"} `}>
           {" "}
@@ -60,7 +60,9 @@ export default function CreerDevis() {
           </div>
         </div>
       </div>
-      <div className="h-full w-4/12 "></div>
+      <div className="flex items-center justify-center h-full w-4/12 p-5">
+        <div className="h-full w-full shadow"></div>
+      </div>
     </div>
   );
 }
