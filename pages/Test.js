@@ -20,7 +20,7 @@ export default function Test() {
   const elmt = excel.map((elmt, index) => {
     return (
       <option key={index}>
-        {elmt.Désignation} / {elmt.Epaisseur}MM / REF : {elmt.REF}
+        {elmt.Désignation} / {elmt.Epaisseur}MM / REF : {elmt.REF} / {elmt.Type}
       </option>
     );
   });
@@ -32,7 +32,7 @@ export default function Test() {
   return (
     <div>
       <select onChange={handleChange}>{elmt}</select>
-      <p className="mt-4">{selection}</p>
+      <p className="mt-4 pl-2">Référence choisi : {selection}</p>
     </div>
   );
 }
