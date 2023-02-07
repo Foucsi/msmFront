@@ -14,20 +14,23 @@ import { login } from "@/reducers/users";
 import * as XLSX from "xlsx";
 
 export default function Welcome() {
-  const [file, setFile] = useState(null);
+  // const [file, setFile] = useState(null);
 
-  const handleFile = (e) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: "binary" });
-      const firstSheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[firstSheetName];
-      console.log("file: ", XLSX.utils.sheet_to_json(worksheet));
-    };
-    reader.readAsBinaryString(e.target.files[0]);
-    setFile(e.target.files[0]);
-  };
+  // const handleFile = (e) => {
+  //   const reader = new FileReader();
+  //   reader.onload = (e) => {
+  //     const data = e.target.result;
+  //     const workbook = XLSX.read(data, { type: "binary" });
+  //     const firstSheetName = workbook.SheetNames[0];
+  //     const worksheet = workbook.Sheets[firstSheetName];
+  //     // console.log(XLSX.utils.sheet_to_json(worksheet));
+  //     setFile(XLSX.utils.sheet_to_json(worksheet));
+  //   };
+  //   reader.readAsBinaryString(e.target.files[0]);
+  //   // setFile(e.target.files[0]);
+  // };
+
+  // file.map((e) => console.log(e.Désignation));
 
   const sections = {
     Acceuil: <Acceuil />,
@@ -63,9 +66,9 @@ export default function Welcome() {
 
   return (
     <div className="flex h-screen w-screen">
-      <div>
+      {/* <div>
         <input type="file" onChange={handleFile} />
-      </div>
+      </div> */}
       <div className="flex flex-col h-full w-1/4 bg-colorBrown">
         <div className="flex w-full items-center justify-evenly h-40">
           <img
