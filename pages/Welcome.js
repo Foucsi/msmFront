@@ -12,6 +12,7 @@ import Factures from "@/components/Factures";
 import Devis from "@/components/Devis";
 import { login } from "@/reducers/users";
 import * as XLSX from "xlsx";
+import Clients from "@/components/Clients";
 
 export default function Welcome() {
   // const [file, setFile] = useState(null);
@@ -36,6 +37,7 @@ export default function Welcome() {
     Acceuil: <Acceuil />,
     Factures: <Factures />,
     Devis: <Devis />,
+    Clients: <Clients />,
   };
 
   const [getProfil, setGetProfil] = useState("");
@@ -154,6 +156,16 @@ export default function Welcome() {
             }`}
           >
             Devis
+          </p>
+          <p
+            onClick={() => displaySection("Clients")}
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Clients"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
+          >
+            Clients
           </p>
           <p
             onClick={() => router.push("/Test")}
