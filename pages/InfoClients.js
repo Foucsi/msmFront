@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { BsArrowLeftShort } from "react-icons/bs";
 
 export default function InfoClients() {
+  const [loader, setLoader] = useState(false);
   const router = useRouter();
   const { name, email, tel, adress } = router.query;
+
+  useEffect(() => {
+    setInterval(() => {
+      setLoader(true);
+    }, 500);
+  }, []);
   return (
     <div className="flex flex-col w-screen h-screen">
       <div className="flex flex-col justify-between bg-colorBgWelcome p-5 pt-10">
@@ -35,20 +42,26 @@ export default function InfoClients() {
 
       <div className="flex w-full p-5 h-screen">
         <div className="flex flex-col h-full w-1/2 shadow-md font-montserrat p-5 ">
-          <div className="flex w-full h-1/2 ">
-            <div className="flex flex-col justify-around items-end w-1/2 h-full  p-5">
-              <p>E-mail</p>
-              <p>Adresse de facturation</p>
-              <p>Nom du contact</p>
-              <p>Tél.</p>
+          {loader ? (
+            <div className="flex w-full h-1/2 ">
+              <div className="flex flex-col justify-around items-end w-1/2 h-full p-5 font-montserrat text-sm">
+                <p>E-mail</p>
+                <p>Adresse de facturation</p>
+                <p>Nom du contact</p>
+                <p>Tél.</p>
+              </div>
+              <div className="flex flex-col justify-around items-startw-1/2 h-full p-5 font-montserrat font-bold">
+                <p className="text-colorBlue font-bold">{email}</p>
+                <p>{adress}</p>
+                <p>{name}</p>
+                <p>{tel}</p>
+              </div>
             </div>
-            <div className="flex flex-col justify-around items-startw-1/2 h-full bg-slate-500 p-5">
-              <p>{email}</p>
-              <p></p>
-              <p></p>
-              <p></p>
+          ) : (
+            <div className="flex items-center justify-center h-full w-full">
+              <img className="h-8 w-8" src="loader.gif" />
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
