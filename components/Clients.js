@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Clients() {
+  const router = useRouter();
   const [clients, setClients] = useState([]);
 
   const fetchData = async () => {
@@ -17,10 +19,22 @@ export default function Clients() {
   }, []);
 
   const listingClients = clients.map((cl, index) => {
+    const handleClick = () => {
+      router.push({
+        pathname: "/InfoClients",
+        query: {
+          name: cl.name,
+          email: cl.email,
+          tel: cl.tel,
+          adress: cl.adress,
+        },
+      });
+    };
     return (
       <div
+        onClick={handleClick}
         key={index}
-        className="flex w-full items-center justify-between mt-1.5 text-center border-b-2 pb-2 pt-2"
+        className="flex w-full items-center justify-between mt-1.5 text-center border-b-2 pb-2 pt-2 bg-white rounded cursor-pointer"
       >
         <p className="w-1/4 font-montserrat">{cl.name}</p>
         <p className="w-1/4 font-montserrat">{cl.email}</p>
