@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDevis } from "@/reducers/users";
 
-export default function AddClient({ setDisplayFormClient }) {
+export default function AddClient({ setDisplayFormClient, selection }) {
   const [nom, setNom] = useState("");
   const [portable, setPortable] = useState("");
   const [email, setEmail] = useState("");
@@ -34,6 +34,7 @@ export default function AddClient({ setDisplayFormClient }) {
         email: email,
         adress: adresse,
         numero: numberDevis,
+        product: selection,
       }),
     });
     const data = await res.json();

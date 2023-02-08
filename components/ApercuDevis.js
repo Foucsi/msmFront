@@ -3,7 +3,14 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import PDFFile from "./PDFFile";
 import { Document, Page } from "react-pdf";
 
-export default function ApercuDevis({ user, client, numero, date, adress }) {
+export default function ApercuDevis({
+  user,
+  client,
+  numero,
+  date,
+  adress,
+  product,
+}) {
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
@@ -22,6 +29,7 @@ export default function ApercuDevis({ user, client, numero, date, adress }) {
             numero={numero}
             date={date}
             adress={adress}
+            product={product}
           />
         }
         fileName="FORM"
@@ -70,6 +78,10 @@ export default function ApercuDevis({ user, client, numero, date, adress }) {
               <p>Site : www.msm-sarl.fr</p>
               <p>N° TVA : FR21 440 489 516</p>
             </div>
+          </div>
+          <div className="p-5 font-montserrat text-sm">
+            <p>Désignation: </p>
+            <p>{product}</p>
           </div>
         </div>
       ) : (

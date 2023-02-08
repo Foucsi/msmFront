@@ -80,6 +80,7 @@ export default function Devis() {
           client: devis.name,
           date: devis.createdAt.substring(0, 10),
           adress: devis.adress,
+          product: devis.product,
         },
       });
     };

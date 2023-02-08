@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function Devis() {
   const router = useRouter();
-  const { user, numero, client, date, adress } = router.query;
+  const { user, numero, client, date, adress, product } = router.query;
 
   const sections = {
     Creer: <CreerDevis />,
@@ -19,6 +19,7 @@ export default function Devis() {
         client={client}
         date={date}
         adress={adress}
+        product={product}
       />
     ),
     Envoyer: <EnvoyerDevis />,
