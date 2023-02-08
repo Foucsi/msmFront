@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiUserCircle } from "react-icons/bi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { MdOutlineComment } from "react-icons/md";
@@ -7,6 +7,34 @@ import AddClient from "./AddClient";
 export default function CreerDevis() {
   const [displayFormClient, setDisplayFormClient] = useState(false);
   const [displayAddArticle, setDisplayAddArticle] = useState(false);
+
+  const [excel, setExcel] = useState([]);
+  const [selection, setSelection] = useState("");
+
+  const fetchData = async () => {
+    const res = await fetch("http://localhost:3000/excel");
+    const data = await res.json();
+    {
+      data.result && setExcel(data.excel);
+      //   console.log(excel);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const elmt = excel.map((elmt, index) => {
+    return (
+      <option key={index}>
+        {elmt.Désignation} / {elmt.Epaisseur}MM / REF : {elmt.REF} / {elmt.Type}
+      </option>
+    );
+  });
+
+  const handleChange = (e) => {
+    setSelection(e.target.value);
+  };
   return (
     <div className="flex w-full h-full justify-around ">
       <div className="flex flex-col h-full w-8/12 shadow-md">
@@ -40,8 +68,9 @@ export default function CreerDevis() {
           </div>
           <div className="flex flex-col justify-end w-full h-4/5 pl-10 ">
             {displayAddArticle && (
-              <div className="h-3/4 w-4/5 shadow-sm">
-                <p>test</p>
+              <div className="h-full w-full p-5">
+                <select onChange={handleChange}>{elmt}</select>
+                <p className="mt-4 pl-2">Référence choisi : {selection}</p>
               </div>
             )}
             <div
