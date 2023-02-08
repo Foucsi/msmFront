@@ -8,6 +8,7 @@ export default function AddClient({ setDisplayFormClient }) {
   const [email, setEmail] = useState("");
   const [adresse, setAdresse] = useState("");
   const [msgError, setMsgError] = useState("");
+
   const [numberDevis, setNumberDevis] = useState();
 
   const users = useSelector((state) => state.user.value);
