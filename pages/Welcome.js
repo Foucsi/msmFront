@@ -167,12 +167,6 @@ export default function Welcome() {
           >
             Clients
           </p>
-          <p
-            onClick={() => router.push("/Test")}
-            className="cursor-pointer hover:opacity-50"
-          >
-            test
-          </p>
         </div>
       </div>
       <div className="flex flex-col justify-between h-full w-3/4 ">
