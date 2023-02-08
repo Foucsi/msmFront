@@ -20,12 +20,12 @@ export default function Clients() {
     return (
       <div
         key={index}
-        className="flex w-full items-center justify-between mt-1.5"
+        className="flex w-full items-center justify-between mt-1.5 text-center border-b-2"
       >
-        <p className="w-1/4">{cl.name}</p>
-        <p className="w-1/4">{cl.email}</p>
-        <p className="w-1/4">{cl.createdAt.slice(0, 10)}</p>
-        <p className="w-1/4">action</p>
+        <p className="w-1/4 font-montserrat pb-5 ">{cl.name}</p>
+        <p className="w-1/4 font-montserrat">{cl.email}</p>
+        <p className="w-1/4 font-montserrat">{cl.createdAt.slice(0, 10)}</p>
+        <p className="w-1/4 font-montserrat">action</p>
       </div>
     );
   });
@@ -36,7 +36,7 @@ export default function Clients() {
         <h1 className="text-3xl font-montserrat text-colorText">Clients</h1>
       </div>
       <div className="flex flex-col">
-        <div className="flex w-full items-center justify-between pb-5">
+        <div className="flex w-full items-center justify-between pb-5 font-montserrat text-center border-b-4">
           <p className="w-1/4">Nom</p>
           <p className="w-1/4">Email</p>
           <p className="w-1/4">Date ajoutée</p>
