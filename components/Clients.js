@@ -20,9 +20,9 @@ export default function Clients() {
     return (
       <div
         key={index}
-        className="flex w-full items-center justify-between mt-1.5 text-center border-b-2"
+        className="flex w-full items-center justify-between mt-1.5 text-center border-b-2 pb-2 pt-2"
       >
-        <p className="w-1/4 font-montserrat pb-5 ">{cl.name}</p>
+        <p className="w-1/4 font-montserrat">{cl.name}</p>
         <p className="w-1/4 font-montserrat">{cl.email}</p>
         <p className="w-1/4 font-montserrat">{cl.createdAt.slice(0, 10)}</p>
         <p className="w-1/4 font-montserrat">action</p>
