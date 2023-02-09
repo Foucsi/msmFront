@@ -13,6 +13,7 @@ import Devis from "@/components/Devis";
 import { login } from "@/reducers/users";
 import * as XLSX from "xlsx";
 import Clients from "@/components/Clients";
+import Test from "./Test";
 
 export default function Welcome() {
   // const [file, setFile] = useState(null);
@@ -38,6 +39,7 @@ export default function Welcome() {
     Factures: <Factures />,
     Devis: <Devis />,
     Clients: <Clients />,
+    Test: <Test />,
   };
 
   const [getProfil, setGetProfil] = useState("");
@@ -166,6 +168,16 @@ export default function Welcome() {
             }`}
           >
             Clients
+          </p>
+          <p
+            onClick={() => displaySection("Test")}
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Test"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
+          >
+            Test
           </p>
         </div>
       </div>
