@@ -7,9 +7,15 @@ import AddClient from "./AddClient";
 export default function CreerDevis() {
   const [displayFormClient, setDisplayFormClient] = useState(false);
   const [displayAddArticle, setDisplayAddArticle] = useState(false);
-
   const [excel, setExcel] = useState([]);
   const [selection, setSelection] = useState("");
+  const [selectElmt, setSelectElmt] = useState("");
+
+  const elmtSelection = ["Caisson", "Plateaux", "Habillages", "Personnalisé"];
+
+  const elmtSelect = elmtSelection.map((e) => {
+    return <option>{e}</option>;
+  });
 
   const fetchData = async () => {
     const res = await fetch("http://localhost:3000/excel");
@@ -74,6 +80,9 @@ export default function CreerDevis() {
               <div className="h-full w-full p-5">
                 <select onChange={handleChange}>{elmt}</select>
                 <p className="mt-4 pl-2">Référence choisi : {selection}</p>
+                <select onChange={(e) => setSelectElmt(e.target.value)}>
+                  {elmtSelect}
+                </select>
               </div>
             )}
             <div
