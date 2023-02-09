@@ -5,7 +5,7 @@ export default function Test() {
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
   const [adress, setAdress] = useState("");
-
+  const [msgError, setMsgError] = useState("");
   const [listingClients, setListingClient] = useState([]);
 
   const registerClient = async () => {
@@ -14,12 +14,14 @@ export default function Test() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, tel, email, adress }),
     });
-    const data = res.json();
-    if (!data.result) {
+    const data = await res.json();
+    if (data.result) {
       setName("");
       setEmail("");
       setAdress("");
       setTel("");
+    } else if (data.error === "Missing or empty fields") {
+      setMsgError("Missing or empty fields");
     }
   };
 
@@ -94,6 +96,7 @@ export default function Test() {
         >
           Valider
         </button>
+        {msgError}
       </div>
     </div>
   );
