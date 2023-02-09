@@ -9,6 +9,14 @@ export default function Test() {
   const [listingClients, setListingClient] = useState([]);
   const [isIncludes, setIsIncludes] = useState(false);
   const [animation, setAnimation] = useState(false);
+  const [displayAddArticle, setDisplayAddArticle] = useState(false);
+
+  const [choiceProduct, setChoiceProduct] = useState("");
+
+  const products = ["Caissons", "Plateaux", "Habillages", "Personnalisé"];
+  const selectProducts = products.map((prod) => (
+    <option className="p-2">{prod}</option>
+  ));
 
   const registerClient = async () => {
     const res = await fetch("http://localhost:3000/clients", {
@@ -69,7 +77,7 @@ export default function Test() {
   };
 
   return (
-    <div className="flex items-center justify-center h-full w-full ">
+    <div className="flex flex-col items-center justify-center h-full w-full ">
       <div className="w-3/4 h-1/2 bg-white shadow-sm">
         <div className="flex flex-col p-5">
           <input
@@ -112,12 +120,50 @@ export default function Test() {
           <div className="flex justify-center">
             <button
               onClick={registerClient}
-              className="text-colorBlue  p-1 rounded font-bold"
+              className="text-colorBlue  p-1 font-bold"
             >
               Enregistrer
             </button>
           </div>
         )}
+      </div>
+      <div className="flex flex-col w-3/4 h-1/2 bg-white shadow-sm mt-2 p-1">
+        {displayAddArticle && (
+          <div className="w-full h-3/4 shadow-lg p-1">
+            <p>Article à ajouter</p>
+            <select onChange={(e) => setChoiceProduct(e.target.value)}>
+              {selectProducts}
+            </select>
+            <p>{choiceProduct}</p>
+            {choiceProduct === "Caissons" && (
+              <div>
+                <input type="text" placeholder="Longueur" />
+                <input type="text" placeholder="Largeur" />
+                <input type="text" placeholder="Profondeur" />
+              </div>
+            )}
+            {choiceProduct === "Plateaux" && (
+              <div>
+                <input type="text" placeholder="Longueur" />
+                <input type="text" placeholder="Largeur" />
+                <input type="text" placeholder="Epaisseur" />
+              </div>
+            )}
+            {choiceProduct === "Habillages" && (
+              <div>
+                <input type="text" placeholder="Hauteur" />
+                <input type="text" placeholder="Largeur" />
+                <input type="text" placeholder="Epaisseur" />
+              </div>
+            )}
+          </div>
+        )}
+        <p
+          onClick={() => setDisplayAddArticle(!displayAddArticle)}
+          className="text-colorBlue p-1 font-bold"
+        >
+          Ajouter des articles
+        </p>
       </div>
     </div>
   );
