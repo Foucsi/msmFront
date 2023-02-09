@@ -7,6 +7,7 @@ export default function Test() {
   const [adress, setAdress] = useState("");
   const [msgError, setMsgError] = useState("");
   const [listingClients, setListingClient] = useState([]);
+  const [isIncludes, setIsIncludes] = useState(false);
 
   const registerClient = async () => {
     const res = await fetch("http://localhost:3000/clients", {
@@ -36,12 +37,13 @@ export default function Test() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [name]);
 
   const nameUser = listingClients.map((e) => e.name);
 
   const addClient = async (e) => {
     if (nameUser.includes(e)) {
+      setIsIncludes(true);
       const res = await fetch(`http://localhost:3000/clients/${e}`);
       const data = await res.json();
       {
@@ -50,6 +52,8 @@ export default function Test() {
           setTel(data.client.tel);
       }
     } else {
+      setMsgError("");
+      setIsIncludes(false);
       setAdress("");
       setEmail("");
       setTel("");
@@ -90,12 +94,16 @@ export default function Test() {
           />
         </div>
 
-        <button
-          onClick={registerClient}
-          className="bg-colorBlue text-white p-1 rounded"
-        >
-          Valider
-        </button>
+        {!isIncludes && (
+          <div className="flex justify-center">
+            <button
+              onClick={registerClient}
+              className="text-colorBlue  p-1 rounded font-bold"
+            >
+              Enregistrer
+            </button>
+          </div>
+        )}
         {msgError}
       </div>
     </div>
