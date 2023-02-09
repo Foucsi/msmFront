@@ -56,6 +56,7 @@ export default function Test() {
         data.result && setAdress(data.client.adress),
           setEmail(data.client.email),
           setTel(data.client.tel);
+        setMsgError("");
       }
     } else {
       setMsgError("");
