@@ -8,6 +8,7 @@ export default function Test() {
   const [msgError, setMsgError] = useState("");
   const [listingClients, setListingClient] = useState([]);
   const [isIncludes, setIsIncludes] = useState(false);
+  const [animation, setAnimation] = useState(false);
 
   const registerClient = async () => {
     const res = await fetch("http://localhost:3000/clients", {
@@ -17,10 +18,15 @@ export default function Test() {
     });
     const data = await res.json();
     if (data.result) {
-      setName("");
-      setEmail("");
-      setAdress("");
-      setTel("");
+      //   setName("");
+      //   setEmail("");
+      //   setAdress("");
+      //   setTel("");
+      setAnimation(true);
+      setInterval(() => {
+        setMsgError("Client enregistré !");
+        setAnimation(false);
+      }, 500);
     } else if (data.error === "Missing or empty fields") {
       setMsgError("Missing or empty fields");
     }
@@ -63,35 +69,41 @@ export default function Test() {
   return (
     <div className="flex items-center justify-center h-full w-full ">
       <div className="w-3/4 h-1/2 bg-white shadow-sm">
-        <div className="flex flex-col">
+        <div className="flex flex-col p-5">
           <input
+            className="p-1 border-b-2"
             type="text"
             placeholder="Nom"
             value={name}
             onChange={(e) => {
               addClient(e.target.value);
-
               setName(e.target.value);
             }}
           />
           <input
+            className="p-1 border-b-2"
             type="text"
             placeholder="Tél"
             value={tel}
             onChange={(e) => setTel(e.target.value)}
           />
           <input
+            className="p-1 border-b-2"
             type="text"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
+            className="p-1 border-b-2"
             type="text"
             placeholder="Adress"
             value={adress}
             onChange={(e) => setAdress(e.target.value)}
           />
+        </div>
+        <div className="flex justify-center h-12">
+          {animation ? <img className="h-8 w-8" src="loader.gif" /> : msgError}
         </div>
 
         {!isIncludes && (
@@ -104,7 +116,6 @@ export default function Test() {
             </button>
           </div>
         )}
-        {msgError}
       </div>
     </div>
   );
