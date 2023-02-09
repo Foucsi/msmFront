@@ -24,9 +24,9 @@ export default function Test() {
       //   setTel("");
       setAnimation(true);
       setInterval(() => {
-        setMsgError("Client enregistré !");
         setAnimation(false);
       }, 500);
+      setMsgError("Client enregistré !");
     } else if (data.error === "Missing or empty fields") {
       setMsgError("Missing or empty fields");
     }
@@ -43,7 +43,8 @@ export default function Test() {
 
   useEffect(() => {
     fetchData();
-  }, [name]);
+    setMsgError("");
+  }, []);
 
   const nameUser = listingClients.map((e) => e.name);
 
@@ -55,8 +56,8 @@ export default function Test() {
       {
         data.result && setAdress(data.client.adress),
           setEmail(data.client.email),
-          setTel(data.client.tel);
-        setMsgError("");
+          setTel(data.client.tel),
+          setMsgError("");
       }
     } else {
       setMsgError("");
