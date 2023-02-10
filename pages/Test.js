@@ -10,12 +10,15 @@ export default function Test() {
   const [isIncludes, setIsIncludes] = useState(false);
   const [animation, setAnimation] = useState(false);
   const [displayAddArticle, setDisplayAddArticle] = useState(false);
+  const [listArticles, setListArticles] = useState([]);
 
   const [choiceProduct, setChoiceProduct] = useState("Caissons");
 
   const products = ["Caissons", "Plateaux", "Habillages", "Personnalisé"];
-  const selectProducts = products.map((prod) => (
-    <option className="p-2">{prod}</option>
+  const selectProducts = products.map((prod, index) => (
+    <option key={index} className="p-2">
+      {prod}
+    </option>
   ));
 
   const registerClient = async () => {
@@ -75,6 +78,19 @@ export default function Test() {
       setTel("");
     }
   };
+
+  const pushProductArticle = (article) => {
+    setListArticles([...listArticles, { article: article }]);
+    console.log("listArticles :", listArticles);
+  };
+
+  const listingPushArticles = listArticles.map((art, index) => {
+    return (
+      <div key={index} className="shadow-sm">
+        {art.article}
+      </div>
+    );
+  });
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full ">
@@ -140,6 +156,9 @@ export default function Test() {
                 <input type="text" placeholder="Longueur" />
                 <input type="text" placeholder="Largeur" />
                 <input type="text" placeholder="Profondeur" />
+                <button onClick={() => pushProductArticle(choiceProduct)}>
+                  Ajouter
+                </button>
               </div>
             )}
             {choiceProduct === "Plateaux" && (
@@ -147,6 +166,9 @@ export default function Test() {
                 <input type="text" placeholder="Longueur" />
                 <input type="text" placeholder="Largeur" />
                 <input type="text" placeholder="Epaisseur" />
+                <button onClick={() => pushProductArticle(choiceProduct)}>
+                  Ajouter
+                </button>
               </div>
             )}
             {choiceProduct === "Habillages" && (
@@ -156,11 +178,12 @@ export default function Test() {
                 <input type="text" placeholder="Epaisseur" />
               </div>
             )}
+            {listingPushArticles}
           </div>
         )}
         <p
           onClick={() => setDisplayAddArticle(!displayAddArticle)}
-          className="text-colorBlue p-1 font-bold"
+          className="text-colorBlue p-1 font-bold cursor-pointer"
         >
           Ajouter des articles
         </p>
