@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export default function Test() {
   const [name, setName] = useState("");
@@ -80,14 +81,25 @@ export default function Test() {
   };
 
   const pushProductArticle = (article) => {
-    setListArticles([...listArticles, { article: article }]);
+    setListArticles([
+      ...listArticles,
+      { article: article, id: Math.random() * 1000 },
+    ]);
     console.log("listArticles :", listArticles);
   };
 
-  const listingPushArticles = listArticles.map((art, index) => {
+  const filteredArticles = (id) => {
+    setListArticles(listArticles.filter((elmt) => elmt.id !== id));
+  };
+
+  const listingPushArticles = listArticles.map((art) => {
     return (
-      <div key={index} className="shadow-sm">
-        {art.article}
+      <div
+        key={art.id}
+        className="flex items-center justify-between shadow-sm mt-1 p-1 hover:bg-slate-200 cursor-pointer"
+      >
+        <p>{art.article}</p>
+        <RiDeleteBin6Line onClick={() => filteredArticles(art.id)} />
       </div>
     );
   });
@@ -146,7 +158,7 @@ export default function Test() {
       <div className="flex flex-col w-3/4 h-1/2 bg-white shadow-sm mt-2 p-1">
         {displayAddArticle && (
           <div className="w-full h-3/4 shadow-lg p-1">
-            <p>Article à ajouter</p>
+            <p>Article à ajouter ({listArticles.length})</p>
             <select onChange={(e) => setChoiceProduct(e.target.value)}>
               {selectProducts}
             </select>
@@ -176,6 +188,9 @@ export default function Test() {
                 <input type="text" placeholder="Hauteur" />
                 <input type="text" placeholder="Largeur" />
                 <input type="text" placeholder="Epaisseur" />
+                <button onClick={() => pushProductArticle(choiceProduct)}>
+                  Ajouter
+                </button>
               </div>
             )}
             {listingPushArticles}
