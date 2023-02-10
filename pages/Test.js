@@ -11,7 +11,7 @@ export default function Test() {
   const [animation, setAnimation] = useState(false);
   const [displayAddArticle, setDisplayAddArticle] = useState(false);
 
-  const [choiceProduct, setChoiceProduct] = useState("");
+  const [choiceProduct, setChoiceProduct] = useState("Caissons");
 
   const products = ["Caissons", "Plateaux", "Habillages", "Personnalisé"];
   const selectProducts = products.map((prod) => (
