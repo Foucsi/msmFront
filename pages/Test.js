@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 export default function Test() {
+  const users = useSelector((state) => state.user.value);
+
   const [name, setName] = useState("");
   const [tel, setTel] = useState("");
   const [email, setEmail] = useState("");
@@ -29,12 +32,13 @@ export default function Test() {
   ));
 
   const registerClient = async () => {
-    const res = await fetch("http://localhost:3000/clients", {
+    const res = await fetch(`http://localhost:3000/clients/${users.token}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, tel, email, adress }),
+      body: JSON.stringify({ name, tel, email, adress, user: users.username }),
     });
     const data = await res.json();
+    console.log(data.result);
     if (data.result) {
       //   setName("");
       //   setEmail("");
