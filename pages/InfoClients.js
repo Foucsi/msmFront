@@ -4,7 +4,9 @@ import { BsArrowLeftShort } from "react-icons/bs";
 
 export default function InfoClients() {
   const [loader, setLoader] = useState(false);
+  const [modif, setModif] = useState(false);
   const router = useRouter();
+
   const { name, email, tel, adress } = router.query;
 
   useEffect(() => {
@@ -51,11 +53,33 @@ export default function InfoClients() {
                 <p>Tél.</p>
               </div>
               <div className="flex flex-col justify-around items-startw-1/2 h-full p-5 font-montserrat font-bold">
-                <p className="text-colorBlue font-bold">{email}</p>
-                <p>{adress}</p>
-                <p>{name}</p>
-                <p>{tel}</p>
+                {modif ? (
+                  <input placeholder={email} className="border-b-2" />
+                ) : (
+                  <p className="text-colorBlue font-bold">{email}</p>
+                )}
+                {modif ? (
+                  <input placeholder={adress} className="border-b-2" />
+                ) : (
+                  <p>{adress}</p>
+                )}
+                {modif ? (
+                  <input placeholder={name} className="border-b-2" />
+                ) : (
+                  <p>{name}</p>
+                )}
+                {modif ? (
+                  <input placeholder={tel} className="border-b-2" />
+                ) : (
+                  <p>{tel}</p>
+                )}
               </div>
+              <button
+                onClick={() => setModif(!modif)}
+                className="bg-colorBlue h-7 p-1 rounded text-white"
+              >
+                {modif ? "Valider" : "Modifier"}
+              </button>
             </div>
           ) : (
             <div className="flex items-center justify-center h-full w-full">

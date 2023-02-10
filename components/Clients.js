@@ -39,7 +39,9 @@ export default function Clients() {
         <p className="w-1/4 font-montserrat">{cl.name}</p>
         <p className="w-1/4 font-montserrat">{cl.email}</p>
         <p className="w-1/4 font-montserrat">{cl.createdAt.slice(0, 10)}</p>
-        <p className="w-1/4 font-montserrat">action</p>
+        <p className="w-1/4 font-montserrat text-colorBlue font-bold hover:bg-slate-200">
+          Modifier
+        </p>
       </div>
     );
   });
