@@ -5,7 +5,13 @@ import { BsArrowLeftShort } from "react-icons/bs";
 export default function InfoClients() {
   const [loader, setLoader] = useState(false);
   const [modif, setModif] = useState(false);
+  const [idClient, setIdClient] = useState("");
   const router = useRouter();
+
+  const [newEmail, setNewEmail] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newAdress, setNewAdress] = useState("");
+  const [newTel, setNewTel] = useState("");
 
   const { name, email, tel, adress } = router.query;
 
@@ -14,6 +20,17 @@ export default function InfoClients() {
       setLoader(true);
     }, 500);
   }, []);
+
+  const updateClient = async () => {
+    const res = await fetch("http://localhost:3000/clients/updateProfil", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, newName }),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <div className="flex flex-col justify-between bg-colorBgWelcome p-5 pt-10">
@@ -54,32 +71,65 @@ export default function InfoClients() {
               </div>
               <div className="flex flex-col justify-around items-startw-1/2 h-full p-5 font-montserrat font-bold">
                 {modif ? (
-                  <input placeholder={email} className="border-b-2" />
+                  <input
+                    placeholder={email}
+                    className="border-b-2"
+                    value={newEmail}
+                    onChange={(e) => setNewEmail(e.target.value)}
+                  />
                 ) : (
                   <p className="text-colorBlue font-bold">{email}</p>
                 )}
                 {modif ? (
-                  <input placeholder={adress} className="border-b-2" />
+                  <input
+                    placeholder={adress}
+                    className="border-b-2"
+                    value={newAdress}
+                    onChange={(e) => setNewAdress(e.target.value)}
+                  />
                 ) : (
                   <p>{adress}</p>
                 )}
                 {modif ? (
-                  <input placeholder={name} className="border-b-2" />
+                  <input
+                    placeholder={name}
+                    className="border-b-2"
+                    value={newName}
+                    onChange={(e) => setNewName(e.target.value)}
+                  />
                 ) : (
                   <p>{name}</p>
                 )}
                 {modif ? (
-                  <input placeholder={tel} className="border-b-2" />
+                  <input
+                    placeholder={tel}
+                    className="border-b-2"
+                    value={newTel}
+                    onChange={(e) => setNewTel(e.target.value)}
+                  />
                 ) : (
                   <p>{tel}</p>
                 )}
               </div>
-              <button
-                onClick={() => setModif(!modif)}
-                className="bg-colorBlue h-7 p-1 rounded text-white"
-              >
-                {modif ? "Valider" : "Modifier"}
-              </button>
+              {modif ? (
+                <button
+                  onClick={() => {
+                    setModif(!modif);
+                    updateClient();
+                  }}
+                  className="bg-colorBlue h-7 p-1 rounded text-white"
+                >
+                  Valider
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    setModif(!modif);
+                  }}
+                >
+                  Modifier
+                </button>
+              )}
             </div>
           ) : (
             <div className="flex items-center justify-center h-full w-full">
