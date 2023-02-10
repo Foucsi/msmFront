@@ -5,10 +5,10 @@ export default function Acceuil() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("http://localhost:3000/devis/getNumberArray");
+      const res = await fetch("http://localhost:3000/clients/all");
       const data = await res.json();
       {
-        data && setNumberDevis(data.lengthArray);
+        data && setNumberDevis(data.data.length);
       }
     };
     fetchData();
