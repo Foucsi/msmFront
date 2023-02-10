@@ -124,19 +124,37 @@ export default function Test() {
     return (
       <div
         key={art.id}
-        className="flex items-center justify-between shadow-sm mt-1 p-1 hover:bg-slate-200 cursor-pointer"
+        className="flex items-center justify-between shadow-sm mt-1 p-1 hover:bg-slate-200 cursor-pointer w-full"
       >
-        <p>{art.art}</p>
+        <p className="w-1/6 bg-slate-200">{art.art}</p>
 
-        {art.art === "Habillages" && <p>Haut. {art.haut}</p>}
-        {art.art === "Caissons" && <p>Long. {art.long}</p>}
-        {art.art === "Plateaux" && <p>Long. {art.long}</p>}
-        {art.art === "Caissons" && <p>Larg. {art.larg}</p>}
-        {art.art === "Habillages" && <p>Larg. {art.larg}</p>}
-        {art.art === "Plateaux" && <p>Larg. {art.larg}</p>}
-        {art.art === "Caissons" && <p>Prof.{art.prof}</p>}
-        {art.art === "Plateaux" && <p>Ep.{art.ep}</p>}
-        {art.art === "Habillages" && <p>Ep.{art.ep}</p>}
+        {art.art === "Habillages" && (
+          <p className="w-1/6 bg-slate-200">Haut. {art.haut}</p>
+        )}
+        {art.art === "Caissons" && (
+          <p className="w-1/6 bg-slate-200">Long. {art.long}</p>
+        )}
+        {art.art === "Plateaux" && (
+          <p className="w-1/6 bg-slate-200">Long. {art.long}</p>
+        )}
+        {art.art === "Caissons" && (
+          <p className="w-1/6 bg-slate-200">Larg. {art.larg}</p>
+        )}
+        {art.art === "Habillages" && (
+          <p className="w-1/6 bg-slate-200">Larg. {art.larg}</p>
+        )}
+        {art.art === "Plateaux" && (
+          <p className="w-1/6 bg-slate-200">Larg. {art.larg}</p>
+        )}
+        {art.art === "Caissons" && (
+          <p className="w-1/6 bg-slate-200">Prof.{art.prof}</p>
+        )}
+        {art.art === "Plateaux" && (
+          <p className="w-1/6 bg-slate-200">Ep.{art.ep}</p>
+        )}
+        {art.art === "Habillages" && (
+          <p className="w-1/6 bg-slate-200">Ep.{art.ep}</p>
+        )}
         <RiDeleteBin6Line onClick={() => filteredArticles(art.id)} />
       </div>
     );
