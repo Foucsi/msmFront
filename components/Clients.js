@@ -6,7 +6,7 @@ export default function Clients() {
   const [clients, setClients] = useState([]);
 
   const fetchData = async () => {
-    const res = await fetch("http://localhost:3000/devis/getAllDevis");
+    const res = await fetch("http://localhost:3000/clients/getAllDevis");
     const data = await res.json();
 
     {

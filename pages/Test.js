@@ -67,7 +67,6 @@ export default function Test() {
   useEffect(() => {
     fetchData();
     setMsgError("");
-    console.log("refresh");
   }, []);
 
   const nameUser = listingClients.map((e) => e.name);
