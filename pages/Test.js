@@ -13,7 +13,13 @@ export default function Test() {
   const [displayAddArticle, setDisplayAddArticle] = useState(false);
   const [listArticles, setListArticles] = useState([]);
 
+  //Input dimensions Artciles
   const [choiceProduct, setChoiceProduct] = useState("Caissons");
+  const [longueur, setLongueur] = useState("");
+  const [hauteur, setHauteur] = useState("");
+  const [largeur, setLargeur] = useState("");
+  const [profondeur, setProfondeur] = useState("");
+  const [epaisseur, setEpaisseur] = useState("");
 
   const products = ["Caissons", "Plateaux", "Habillages", "Personnalisé"];
   const selectProducts = products.map((prod, index) => (
@@ -38,6 +44,7 @@ export default function Test() {
       setInterval(() => {
         setAnimation(false);
       }, 500);
+      clearInterval();
       setMsgError("Client enregistré !");
     } else if (data.error === "Missing or empty fields") {
       setMsgError("Missing or empty fields");
@@ -56,6 +63,7 @@ export default function Test() {
   useEffect(() => {
     fetchData();
     setMsgError("");
+    console.log("refresh");
   }, []);
 
   const nameUser = listingClients.map((e) => e.name);
@@ -80,12 +88,32 @@ export default function Test() {
     }
   };
 
-  const pushProductArticle = (article) => {
+  const pushProductArticle = (
+    article,
+    largeur,
+    profondeur,
+    longueur,
+    epaisseur,
+    hauteur
+  ) => {
     setListArticles([
       ...listArticles,
-      { article: article, id: Math.random() * 1000 },
+      {
+        art: article,
+        larg: largeur,
+        prof: profondeur,
+        long: longueur,
+        ep: epaisseur,
+        haut: hauteur,
+        id: Math.random() * 1000,
+      },
     ]);
     console.log("listArticles :", listArticles);
+    setLargeur("");
+    setProfondeur("");
+    setLongueur("");
+    setEpaisseur("");
+    setHauteur("");
   };
 
   const filteredArticles = (id) => {
@@ -98,11 +126,136 @@ export default function Test() {
         key={art.id}
         className="flex items-center justify-between shadow-sm mt-1 p-1 hover:bg-slate-200 cursor-pointer"
       >
-        <p>{art.article}</p>
+        <p>{art.art}</p>
+
+        {art.art === "Habillages" && <p>Haut. {art.haut}</p>}
+        {art.art === "Caissons" && <p>Long. {art.long}</p>}
+        {art.art === "Plateaux" && <p>Long. {art.long}</p>}
+        {art.art === "Caissons" && <p>Larg. {art.larg}</p>}
+        {art.art === "Habillages" && <p>Larg. {art.larg}</p>}
+        {art.art === "Plateaux" && <p>Larg. {art.larg}</p>}
+        {art.art === "Caissons" && <p>Prof.{art.prof}</p>}
+        {art.art === "Plateaux" && <p>Ep.{art.ep}</p>}
+        {art.art === "Habillages" && <p>Ep.{art.ep}</p>}
         <RiDeleteBin6Line onClick={() => filteredArticles(art.id)} />
       </div>
     );
   });
+
+  const testProduct = (prod) => {
+    if (prod === "Caissons") {
+      return (
+        <div>
+          <input
+            type="text"
+            placeholder="Longueur"
+            value={longueur}
+            onChange={(e) => setLongueur(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Largeur"
+            value={largeur}
+            onChange={(e) => setLargeur(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Profondeur"
+            value={profondeur}
+            onChange={(e) => setProfondeur(e.target.value)}
+          />
+          <button
+            onClick={() =>
+              pushProductArticle(
+                choiceProduct,
+                largeur,
+                profondeur,
+                longueur,
+                epaisseur,
+                hauteur
+              )
+            }
+          >
+            Ajouter
+          </button>
+        </div>
+      );
+    } else if (prod === "Plateaux") {
+      return (
+        <div>
+          <input
+            type="text"
+            placeholder="Longueur"
+            value={longueur}
+            onChange={(e) => setLongueur(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Largeur"
+            value={largeur}
+            onChange={(e) => setLargeur(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Epaisseur"
+            value={epaisseur}
+            onChange={(e) => setEpaisseur(e.target.value)}
+          />
+          <button
+            onClick={() =>
+              pushProductArticle(
+                choiceProduct,
+                largeur,
+                profondeur,
+                longueur,
+                epaisseur,
+                hauteur
+              )
+            }
+          >
+            Ajouter
+          </button>
+        </div>
+      );
+    } else if (prod === "Habillages") {
+      return (
+        <div>
+          <input
+            type="text"
+            placeholder="Hauteur"
+            value={hauteur}
+            onChange={(e) => setHauteur(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Largeur"
+            value={largeur}
+            onChange={(e) => setLargeur(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Epaisseur"
+            value={epaisseur}
+            onChange={(e) => setEpaisseur(e.target.value)}
+          />
+          <button
+            onClick={() =>
+              pushProductArticle(
+                choiceProduct,
+                largeur,
+                profondeur,
+                longueur,
+                epaisseur,
+                hauteur
+              )
+            }
+          >
+            Ajouter
+          </button>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-full w-full ">
@@ -162,37 +315,7 @@ export default function Test() {
             <select onChange={(e) => setChoiceProduct(e.target.value)}>
               {selectProducts}
             </select>
-            <p>{choiceProduct}</p>
-            {choiceProduct === "Caissons" && (
-              <div>
-                <input type="text" placeholder="Longueur" />
-                <input type="text" placeholder="Largeur" />
-                <input type="text" placeholder="Profondeur" />
-                <button onClick={() => pushProductArticle(choiceProduct)}>
-                  Ajouter
-                </button>
-              </div>
-            )}
-            {choiceProduct === "Plateaux" && (
-              <div>
-                <input type="text" placeholder="Longueur" />
-                <input type="text" placeholder="Largeur" />
-                <input type="text" placeholder="Epaisseur" />
-                <button onClick={() => pushProductArticle(choiceProduct)}>
-                  Ajouter
-                </button>
-              </div>
-            )}
-            {choiceProduct === "Habillages" && (
-              <div>
-                <input type="text" placeholder="Hauteur" />
-                <input type="text" placeholder="Largeur" />
-                <input type="text" placeholder="Epaisseur" />
-                <button onClick={() => pushProductArticle(choiceProduct)}>
-                  Ajouter
-                </button>
-              </div>
-            )}
+            {testProduct(choiceProduct)}
             {listingPushArticles}
           </div>
         )}
