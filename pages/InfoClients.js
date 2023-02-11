@@ -8,7 +8,7 @@ export default function InfoClients() {
   const [idClient, setIdClient] = useState("");
   const router = useRouter();
 
-  const [newEmail, setNewEmail] = useState("");
+  const [newEmail, setNewEmail] = useState();
   const [newName, setNewName] = useState("");
   const [newAdress, setNewAdress] = useState("");
   const [newTel, setNewTel] = useState("");
@@ -28,7 +28,6 @@ export default function InfoClients() {
       body: JSON.stringify({ name, newEmail, newName, newTel, newAdress }),
     });
     const data = await res.json();
-    console.log(data);
   };
 
   return (
