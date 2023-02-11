@@ -25,7 +25,7 @@ export default function InfoClients() {
     const res = await fetch("http://localhost:3000/clients/updateProfil", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, newName }),
+      body: JSON.stringify({ name, newEmail, newName, newTel, newAdress }),
     });
     const data = await res.json();
     console.log(data);
