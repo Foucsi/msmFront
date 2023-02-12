@@ -130,6 +130,7 @@ export default function Test() {
       body: JSON.stringify({
         name,
         devis: {
+          user: users.username,
           articles: choiceProduct,
           longueur: longueur,
           largeur: largeur,
