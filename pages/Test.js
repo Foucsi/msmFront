@@ -123,6 +123,26 @@ export default function Test() {
     setListArticles(listArticles.filter((elmt) => elmt.id !== id));
   };
 
+  const addArticlesDevis = async () => {
+    const res = await fetch("http://localhost:3000/clients/byName", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        devis: {
+          articles: choiceProduct,
+          longueur: longueur,
+          largeur: largeur,
+          epaisseur: epaisseur,
+        },
+      }),
+    });
+    const data = await res.json();
+    {
+      data.result && console.log(data.result);
+    }
+  };
+
   const listingPushArticles = listArticles.map((art) => {
     return (
       <div
@@ -338,7 +358,10 @@ export default function Test() {
             </select>
             {testProduct(choiceProduct)}
             {listingPushArticles}
-            <button className="bg-colorBlue p-2 rounded text-white">
+            <button
+              onClick={() => addArticlesDevis()}
+              className="bg-colorBlue p-2 rounded text-white"
+            >
               Valider
             </button>
           </div>
