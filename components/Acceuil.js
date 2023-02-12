@@ -17,7 +17,7 @@ export default function Acceuil() {
   return (
     <div className="w-full h-full p-5">
       <div className="w-full  p-5">
-        <h1 className="text-3xl font-montserrat text-colorText">Acceuil</h1>
+        <h1 className="text-3xl font-montserrat text-colorText">Accueil</h1>
       </div>
       <div className="flex flex-col justify-center w-full h-5/6  p-5">
         <div>
