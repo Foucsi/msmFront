@@ -28,6 +28,9 @@ export default function InfoClients() {
       body: JSON.stringify({ name, newEmail, newName, newTel, newAdress }),
     });
     const data = await res.json();
+    {
+      data.result && console.log(data.result);
+    }
   };
 
   return (
