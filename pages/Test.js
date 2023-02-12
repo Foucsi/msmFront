@@ -338,6 +338,9 @@ export default function Test() {
             </select>
             {testProduct(choiceProduct)}
             {listingPushArticles}
+            <button className="bg-colorBlue p-2 rounded text-white">
+              Valider
+            </button>
           </div>
         )}
         <p
