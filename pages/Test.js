@@ -132,9 +132,11 @@ export default function Test() {
         devis: {
           user: users.username,
           articles: choiceProduct,
-          longueur: longueur,
-          largeur: largeur,
-          epaisseur: epaisseur,
+          longueur: longueur || false,
+          largeur: largeur || false,
+          epaisseur: epaisseur || false,
+          hauteur: hauteur || false,
+          profondeur: profondeur || false,
         },
       }),
     });
