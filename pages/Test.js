@@ -142,7 +142,11 @@ export default function Test() {
     });
     const data = await res.json();
     {
-      data.result && console.log(data.result);
+      data.result &&
+        console.log(
+          "devis:",
+          data.data.devis.map((e) => e.devis)
+        );
     }
   };
 
