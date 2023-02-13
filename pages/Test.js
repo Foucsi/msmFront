@@ -141,13 +141,10 @@ export default function Test() {
       }),
     });
     const data = await res.json();
-    {
-      data.result &&
-        console.log(
-          "devis:",
-          data.data.devis.map((e) => e.devis)
-        );
-    }
+    // if (data.result) {
+    //   const test = data.data.devis.map((e) => e);
+    //   console.log(test.map((e) => e._id));
+    // }
   };
 
   const listingPushArticles = listArticles.map((art) => {
