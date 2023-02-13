@@ -141,6 +141,13 @@ export default function Test() {
       }),
     });
     const data = await res.json();
+    if (data.result) {
+      setLongueur("");
+      setLargeur("");
+      setEpaisseur("");
+      setHauteur("");
+      setProfondeur("");
+    }
     // if (data.result) {
     //   const test = data.data.devis.map((e) => e);
     //   console.log(test.map((e) => e._id));
