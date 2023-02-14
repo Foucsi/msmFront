@@ -29,18 +29,16 @@ export default function TestBox() {
   };
 
   return (
-    <Carousel
-      axis="vertical"
-      className="flex flex-col items-center justify-around h-full w-full"
-    >
-      <div className="flex w-full h-full items-center justify-around">
-        <div className="flex items-end h-1/2 font-montserrat">
-          <p className="text-2xl">Quels types d'articles ?</p>
-        </div>
+    <div className="flex flex-col w-full h-full items-center ">
+      <div className="flex items-end font-montserrat pt-10">
+        <p className="text-2xl">Quels types d'articles ?</p>
+      </div>
+      <div className="flex w-full items-center justify-around pt-10">
         {articles.map((art, index) => (
           <div
             onClick={() => {
               handleVisibilityChange(art);
+              console.log("article: ", art);
             }}
             className={`flex flex-col relative items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
               selectedArticle === art ? "bg-slate-300" : ""
@@ -57,8 +55,6 @@ export default function TestBox() {
           </div>
         ))}
       </div>
-      <div></div>
-      <div></div>
-    </Carousel>
+    </div>
   );
 }
