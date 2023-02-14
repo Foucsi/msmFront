@@ -71,7 +71,7 @@ export default function TestBox() {
                 selectedArticle === art ? "Aucun articles séléctionnés!" : art
               );
             }}
-            className={`flex flex-col relative items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
+            className={`flex flex-col relative items-center justify-evenly border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
               selectedArticle === art ? "bg-slate-300" : ""
             }`}
             key={index}
