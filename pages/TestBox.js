@@ -7,7 +7,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 
 export default function TestBox() {
   const articles = ["Caissons", "Panneaux", "Habillages", "Personnalisé"];
-  const [isSelected, setIsSelected] = useState([]);
+  const [selectedArticle, setSelectedArticle] = useState(null);
 
   const articleIcons = {
     Caissons: <BsBox size={72} color="#062650" />,
@@ -16,31 +16,28 @@ export default function TestBox() {
     Personnalisé: <AiOutlineUnorderedList size={72} color="#062650" />,
   };
 
-  const handleVisibilityChange = (index) => {
-    //fonction qui permet de mettre à jour l'état de isSelected
-    //Elle prend en entrée un index,
-    //qui représente l'index de l'élément dans le tableau pour lequel la visibilité doit être mise à jour.
-    setIsSelected((prevStates) => {
-      //Lors de la mise à jour,
-      //setIsVisible appelle une fonction qui retourne une nouvelle version de l'état
-      //précédent en inversant la valeur de l'élément correspondant à l'index donné.
-      const newStates = [...prevStates];
-      newStates[index] = !newStates[index];
-      return newStates;
-    });
+  const handleVisibilityChange = (article) => {
+    if (selectedArticle === article) {
+      setSelectedArticle(null);
+    } else {
+      setSelectedArticle(article);
+    }
   };
+
   return (
     <div className="flex items-center justify-around h-full w-full">
       {articles.map((art, index) => (
         <div
-          onClick={() => handleVisibilityChange(index)}
-          className="flex relative flex-col items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300"
+          onClick={() => handleVisibilityChange(art)}
+          className={`flex relative flex-col items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
+            selectedArticle === art ? "bg-slate-300" : ""
+          }`}
           key={index}
         >
           {articleIcons[art]}
           <p>{art}</p>
-          {isSelected[index] && (
-            <div className="flex items-center justify-center absolute h-10 w-10 bg-colorIcon top-0 right-0 rounded-bl-lg">
+          {selectedArticle === art && (
+            <div className="flex items-center justify-center absolute h-10 w-10 bg-colorIcon top-0 right-0 rounded-bl-">
               <AiOutlineCheck color="#fff" />
             </div>
           )}
