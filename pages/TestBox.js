@@ -11,13 +11,38 @@ import { Carousel } from "react-responsive-carousel";
 export default function TestBox() {
   const articles = ["Caissons", "Panneaux", "Habillages", "Personnalisé"];
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [slide, setSlide] = useState(false);
+  const [article, setArticle] = useState("");
 
   const articleIcons = {
     Caissons: <BsBox size={72} color="#062650" />,
     Panneaux: <GiPlanks size={72} color="#062650" />,
     Habillages: <MdOutlineDesignServices size={72} color="#062650" />,
     Personnalisé: <AiOutlineUnorderedList size={72} color="#062650" />,
+  };
+
+  const inputArticles = {
+    Caissons: (
+      <div>
+        <input placeholder="Longueur" />
+        <input placeholder="Largeur" />
+        <input placeholder="Profondeur" />
+      </div>
+    ),
+    Panneaux: (
+      <div>
+        <input placeholder="Longueur" />
+        <input placeholder="Largeur" />
+        <input placeholder="Epaisseur" />
+      </div>
+    ),
+    Habillages: (
+      <div>
+        <input placeholder="hauteur" />
+        <input placeholder="Largeur" />
+        <input placeholder="Epaisseur" />
+      </div>
+    ),
+    Personnalisé: <input placeholder="" />,
   };
 
   const handleVisibilityChange = (article) => {
@@ -39,6 +64,7 @@ export default function TestBox() {
             onClick={() => {
               handleVisibilityChange(art);
               console.log("article: ", art);
+              setArticle(art);
             }}
             className={`flex flex-col relative items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
               selectedArticle === art ? "bg-slate-300" : ""
@@ -55,6 +81,10 @@ export default function TestBox() {
           </div>
         ))}
       </div>
+      <div className="h-24 p-5">
+        <p>Article : {article} </p>
+      </div>
+      <div>{inputArticles[selectedArticle]}</div>
     </div>
   );
 }
