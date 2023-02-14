@@ -14,6 +14,7 @@ import { login } from "@/reducers/users";
 import * as XLSX from "xlsx";
 import Clients from "@/components/Clients";
 import Test from "./Test";
+import TestBox from "./TestBox";
 
 export default function Welcome() {
   // const [file, setFile] = useState(null);
@@ -40,6 +41,7 @@ export default function Welcome() {
     Devis: <Devis />,
     Clients: <Clients />,
     Test: <Test />,
+    TestBox: <TestBox />,
   };
 
   const [getProfil, setGetProfil] = useState("");
@@ -178,6 +180,16 @@ export default function Welcome() {
             }`}
           >
             Test
+          </p>
+          <p
+            onClick={() => displaySection("TestBox")}
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "TestBox"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
+          >
+            TestBox
           </p>
         </div>
       </div>
