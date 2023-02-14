@@ -5,9 +5,13 @@ import { MdOutlineDesignServices } from "react-icons/md";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+
 export default function TestBox() {
   const articles = ["Caissons", "Panneaux", "Habillages", "Personnalisé"];
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [slide, setSlide] = useState(false);
 
   const articleIcons = {
     Caissons: <BsBox size={72} color="#062650" />,
@@ -25,24 +29,36 @@ export default function TestBox() {
   };
 
   return (
-    <div className="flex items-center justify-around h-full w-full">
-      {articles.map((art, index) => (
-        <div
-          onClick={() => handleVisibilityChange(art)}
-          className={`flex relative flex-col items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
-            selectedArticle === art ? "bg-slate-300" : ""
-          }`}
-          key={index}
-        >
-          {articleIcons[art]}
-          <p>{art}</p>
-          {selectedArticle === art && (
-            <div className="flex items-center justify-center absolute h-10 w-10 bg-colorIcon top-0 right-0 rounded-bl-">
-              <AiOutlineCheck color="#fff" />
-            </div>
-          )}
+    <Carousel
+      axis="vertical"
+      className="flex flex-col items-center justify-around h-full w-full"
+    >
+      <div className="flex w-full h-full items-center justify-around">
+        <div className="flex items-end h-1/2 font-montserrat">
+          <p className="text-2xl">Quels types d'articles ?</p>
         </div>
-      ))}
-    </div>
+        {articles.map((art, index) => (
+          <div
+            onClick={() => {
+              handleVisibilityChange(art);
+            }}
+            className={`flex flex-col relative items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
+              selectedArticle === art ? "bg-slate-300" : ""
+            }`}
+            key={index}
+          >
+            {articleIcons[art]}
+            <p>{art}</p>
+            {selectedArticle === art && (
+              <div className="flex items-center justify-center absolute h-10 w-10 bg-colorIcon top-0 right-0 rounded-bl-">
+                <AiOutlineCheck color="#fff" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div></div>
+      <div></div>
+    </Carousel>
   );
 }
