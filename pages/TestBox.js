@@ -11,7 +11,7 @@ import { Carousel } from "react-responsive-carousel";
 export default function TestBox() {
   const articles = ["Caissons", "Panneaux", "Habillages", "Personnalisé"];
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [article, setArticle] = useState("");
+  const [article, setArticle] = useState("Aucun articles séléctionnés!");
 
   const articleIcons = {
     Caissons: <BsBox size={72} color="#062650" />,
@@ -22,27 +22,31 @@ export default function TestBox() {
 
   const inputArticles = {
     Caissons: (
-      <div>
-        <input placeholder="Longueur" />
-        <input placeholder="Largeur" />
-        <input placeholder="Profondeur" />
+      <div className="flex items-center justify-around w-full">
+        <input placeholder="Longueur" className="p-2 rounded" />
+        <input placeholder="Largeur" className="p-2 rounded" />
+        <input placeholder="Profondeur" className="p-2 rounded" />
       </div>
     ),
     Panneaux: (
-      <div>
-        <input placeholder="Longueur" />
-        <input placeholder="Largeur" />
-        <input placeholder="Epaisseur" />
+      <div className="flex items-center justify-around w-full">
+        <input placeholder="Longueur" className="p-2 rounded" />
+        <input placeholder="Largeur" className="p-2 rounded" />
+        <input placeholder="Epaisseur" className="p-2 rounded" />
       </div>
     ),
     Habillages: (
-      <div>
-        <input placeholder="hauteur" />
-        <input placeholder="Largeur" />
-        <input placeholder="Epaisseur" />
+      <div className="flex items-center justify-around w-full">
+        <input placeholder="hauteur" className="p-2 rounded" />
+        <input placeholder="Largeur" className="p-2 rouded" />
+        <input placeholder="Epaisseur" className="p-2 rounded" />
       </div>
     ),
-    Personnalisé: <input placeholder="" />,
+    Personnalisé: (
+      <div className="flex items-center justify-center w-full">
+        <input placeholder="Personnalisé" className="p-2 rounded" />
+      </div>
+    ),
   };
 
   const handleVisibilityChange = (article) => {
@@ -63,8 +67,9 @@ export default function TestBox() {
           <div
             onClick={() => {
               handleVisibilityChange(art);
-              console.log("article: ", art);
-              setArticle(art);
+              setArticle(
+                selectedArticle === art ? "Aucun articles séléctionnés!" : art
+              );
             }}
             className={`flex flex-col relative items-center justify-center border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
               selectedArticle === art ? "bg-slate-300" : ""
@@ -84,7 +89,7 @@ export default function TestBox() {
       <div className="h-24 p-5">
         <p>Article : {article} </p>
       </div>
-      <div>{inputArticles[selectedArticle]}</div>
+      <div className="w-full">{inputArticles[selectedArticle]}</div>
     </div>
   );
 }
