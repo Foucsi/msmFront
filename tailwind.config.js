@@ -24,6 +24,7 @@ module.exports = {
         colorBorderBottomDevis: "#76635F",
         colorBgAdressDevis: "#F0EDED",
         colorCross: "#F2F2F4",
+        colorIcon: "#062650",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
