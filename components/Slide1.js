@@ -131,6 +131,7 @@ export default function Slide1({ position, handleNext }) {
       article === "Habillages" &&
         dispatch(addArticles({ article, hauteur, largeur, epaisseur }));
     }
+    handleNext();
     setEpaisseur("");
     setHauteur("");
     setLargeur("");

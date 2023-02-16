@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function Slide2({ position }) {
   const users = useSelector((state) => state.user.value);
-  const article = users.articles.map((elmt) => {
-    return (
-      <div>
-        <p>{elmt.article}</p>
-      </div>
-    );
-  });
+
+  users.articles.map((e) => console.log(e.article.article));
 
   const slideStyle = {
     backgroundColor: "green",
@@ -26,7 +21,8 @@ export default function Slide2({ position }) {
       }`}
       style={slideStyle}
     >
-      <p>Contenu : {article}</p>
+      <p>Contenu : {users.username}</p>
+      <p>Article : </p>
     </div>
   );
 }
