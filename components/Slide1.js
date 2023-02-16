@@ -12,6 +12,12 @@ export default function Slide1({ position, handleNext }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [article, setArticle] = useState("Aucun articles séléctionnés!");
 
+  const [longueur, setLongueur] = useState();
+  const [largeur, setLargeur] = useState();
+  const [profondeur, setProfondeur] = useState();
+  const [epaisseur, setEpaisseur] = useState();
+  const [hauteur, setHauteur] = useState();
+
   const dispatch = useDispatch();
 
   const articleIcons = {
@@ -24,23 +30,68 @@ export default function Slide1({ position, handleNext }) {
   const inputArticles = {
     Caissons: (
       <div className="flex items-center justify-around w-full">
-        <input placeholder="Longueur" className="p-2 rounded" />
-        <input placeholder="Largeur" className="p-2 rounded" />
-        <input placeholder="Profondeur" className="p-2 rounded" />
+        <input
+          placeholder="Longueur"
+          className="p-2 rounded"
+          value={longueur}
+          onChange={(e) => setLongueur(e.target.value)}
+        />
+        <input
+          placeholder="Largeur"
+          className="p-2 rounded"
+          value={largeur}
+          onChange={(e) => setLargeur(e.target.value)}
+        />
+        <input
+          placeholder="Profondeur"
+          className="p-2 rounded"
+          value={profondeur}
+          onChange={(e) => setProfondeur(e.target.value)}
+        />
       </div>
     ),
     Panneaux: (
       <div className="flex items-center justify-around w-full">
-        <input placeholder="Longueur" className="p-2 rounded" />
-        <input placeholder="Largeur" className="p-2 rounded" />
-        <input placeholder="Epaisseur" className="p-2 rounded" />
+        <input
+          placeholder="Longueur"
+          className="p-2 rounded"
+          value={longueur}
+          onChange={(e) => setLongueur(e.target.value)}
+        />
+        <input
+          placeholder="Largeur"
+          className="p-2 rounded"
+          value={largeur}
+          onChange={(e) => setLargeur(e.target.value)}
+        />
+        <input
+          placeholder="Epaisseur"
+          className="p-2 rounded"
+          value={epaisseur}
+          onChange={(e) => setEpaisseur(e.target.value)}
+        />
       </div>
     ),
     Habillages: (
       <div className="flex items-center justify-around w-full">
-        <input placeholder="hauteur" className="p-2 rounded" />
-        <input placeholder="Largeur" className="p-2 rouded" />
-        <input placeholder="Epaisseur" className="p-2 rounded" />
+        <input
+          placeholder="hauteur"
+          className="p-2 rounded"
+          value={hauteur}
+          onChange={(e) => setHauteur(e.target.value)}
+        />
+        <input
+          placeholder="Largeur"
+          className="p-2 rouded"
+          value={largeur}
+          onChange={(e) => setLargeur(e.target.value)}
+        />
+        <input
+          placeholder="Epaisseur"
+          className="p-2 rounded"
+          value={epaisseur}
+          onChange={(e) => setEpaisseur(e.target.value)}
+        />
       </div>
     ),
     Personnalisé: (
@@ -57,6 +108,13 @@ export default function Slide1({ position, handleNext }) {
       setSelectedArticle(article);
     }
   };
+
+  const addArticleRecuder = () => {
+    if (article !== "Aucun articles séléctionnés!") {
+      dispatch(addArticles({ article: article }));
+    }
+  };
+
   const slideStyle = {
     backgroundColor: "#f8f8f8",
     color: "#333",
@@ -106,7 +164,7 @@ export default function Slide1({ position, handleNext }) {
       </div>
       <div className="w-full">{inputArticles[selectedArticle]}</div>
       <button
-        onClick={() => dispatch(addArticles({ article: article }))}
+        onClick={() => addArticleRecuder()}
         className="bg-colorBlue p-2 rounded text-white mt-2"
       >
         Valider
