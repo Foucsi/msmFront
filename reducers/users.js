@@ -8,6 +8,7 @@ const initialState = {
     email: null,
     profil: null,
     devis: [],
+    articles: [],
   },
 };
 
@@ -21,15 +22,21 @@ export const userSlice = createSlice({
       state.value.password = action.payload.password;
       state.value.email = action.payload.email;
       state.value.profil = action.payload.profil;
+      state.value.articles = [];
     },
     logout: (state) => {
       state.value.username = null;
       state.value.email = null;
       state.value.token = null;
       state.value.profil = null;
+      state.value.articles = [];
+    },
+    addArticles: (state, action) => {
+      -console.log("addArticles - payload:", action.payload);
+      state.value.articles.push(action.payload);
     },
   },
 });
 
-export const { login, logout, addDevis } = userSlice.actions;
+export const { login, logout, addArticles } = userSlice.actions;
 export default userSlice.reducer;
