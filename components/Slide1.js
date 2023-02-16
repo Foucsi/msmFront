@@ -12,11 +12,11 @@ export default function Slide1({ position, handleNext }) {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [article, setArticle] = useState("Aucun articles séléctionnés!");
 
-  const [longueur, setLongueur] = useState();
-  const [largeur, setLargeur] = useState();
-  const [profondeur, setProfondeur] = useState();
-  const [epaisseur, setEpaisseur] = useState();
-  const [hauteur, setHauteur] = useState();
+  const [longueur, setLongueur] = useState("");
+  const [largeur, setLargeur] = useState("");
+  const [profondeur, setProfondeur] = useState("");
+  const [epaisseur, setEpaisseur] = useState("");
+  const [hauteur, setHauteur] = useState("");
 
   const dispatch = useDispatch();
 
@@ -119,9 +119,23 @@ export default function Slide1({ position, handleNext }) {
   };
 
   const addArticleRecuder = () => {
-    if (article !== "Aucun articles séléctionnés!") {
-      dispatch(addArticles({ article, longueur, largeur, profondeur }));
+    {
+      article === "Caissons" &&
+        dispatch(addArticles({ article, longueur, largeur, profondeur }));
     }
+    {
+      article === "Panneaux" &&
+        dispatch(addArticles({ article, longueur, largeur, epaisseur }));
+    }
+    {
+      article === "Habillages" &&
+        dispatch(addArticles({ article, hauteur, largeur, epaisseur }));
+    }
+    setEpaisseur("");
+    setHauteur("");
+    setLargeur("");
+    setLongueur("");
+    setProfondeur("");
   };
 
   const slideStyle = {

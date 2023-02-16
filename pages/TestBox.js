@@ -25,7 +25,7 @@ export default function TestBox() {
 
   return (
     <div className="flex flex-col w-full h-full items-center ">
-      {position === 0 && <Slide1 position={position} />}
+      {position === 0 && <Slide1 position={position} handleNext={handleNext} />}
       {position === 1 && <Slide2 position={position} />}
       {position === 2 && <Slide3 position={position} />}
       <button onClick={handlePrev}>Précédent</button>
