@@ -31,18 +31,21 @@ export default function Slide1({ position, handleNext }) {
     Caissons: (
       <div className="flex items-center justify-around w-full">
         <input
+          type="number"
           placeholder="Longueur"
           className="p-2 rounded"
           value={longueur}
           onChange={(e) => setLongueur(e.target.value)}
         />
         <input
+          type="number"
           placeholder="Largeur"
           className="p-2 rounded"
           value={largeur}
           onChange={(e) => setLargeur(e.target.value)}
         />
         <input
+          type="number"
           placeholder="Profondeur"
           className="p-2 rounded"
           value={profondeur}
@@ -53,18 +56,21 @@ export default function Slide1({ position, handleNext }) {
     Panneaux: (
       <div className="flex items-center justify-around w-full">
         <input
+          type="number"
           placeholder="Longueur"
           className="p-2 rounded"
           value={longueur}
           onChange={(e) => setLongueur(e.target.value)}
         />
         <input
+          type="number"
           placeholder="Largeur"
           className="p-2 rounded"
           value={largeur}
           onChange={(e) => setLargeur(e.target.value)}
         />
         <input
+          type="number"
           placeholder="Epaisseur"
           className="p-2 rounded"
           value={epaisseur}
@@ -75,18 +81,21 @@ export default function Slide1({ position, handleNext }) {
     Habillages: (
       <div className="flex items-center justify-around w-full">
         <input
+          type="number"
           placeholder="hauteur"
           className="p-2 rounded"
           value={hauteur}
           onChange={(e) => setHauteur(e.target.value)}
         />
         <input
+          type="number"
           placeholder="Largeur"
           className="p-2 rouded"
           value={largeur}
           onChange={(e) => setLargeur(e.target.value)}
         />
         <input
+          type="number"
           placeholder="Epaisseur"
           className="p-2 rounded"
           value={epaisseur}
@@ -111,7 +120,7 @@ export default function Slide1({ position, handleNext }) {
 
   const addArticleRecuder = () => {
     if (article !== "Aucun articles séléctionnés!") {
-      dispatch(addArticles({ article: article }));
+      dispatch(addArticles({ article, longueur, largeur, profondeur }));
     }
   };
 

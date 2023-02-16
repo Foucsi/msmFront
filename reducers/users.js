@@ -32,8 +32,11 @@ export const userSlice = createSlice({
       state.value.articles = [];
     },
     addArticles: (state, action) => {
-      -console.log("addArticles - payload:", action.payload);
-      state.value.articles.push(action.payload);
+      const newArticle = {
+        article: action.payload,
+      };
+      state.value.articles.push(newArticle);
+      console.log(newArticle);
     },
   },
 });
