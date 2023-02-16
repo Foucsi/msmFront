@@ -74,44 +74,11 @@ export default function TestBox() {
 
   return (
     <div className="flex flex-col w-full h-full items-center ">
-      <div className="flex items-end font-montserrat pt-10">
-        <p className="text-2xl">Quels types d'articles ?</p>
-      </div>
-      <div className="flex w-full items-center justify-around pt-10">
-        {articles.map((art, index) => (
-          <div
-            onClick={() => {
-              handleVisibilityChange(art);
-              setArticle(
-                selectedArticle === art ? "Aucun articles séléctionnés!" : art
-              );
-            }}
-            className={`flex flex-col relative items-center justify-evenly border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
-              selectedArticle === art ? "bg-slate-300" : ""
-            }`}
-            key={index}
-          >
-            {articleIcons[art]}
-            <p>{art}</p>
-            {selectedArticle === art && (
-              <div className="flex items-center justify-center absolute h-10 w-10 bg-colorIcon top-0 right-0 rounded-bl-">
-                <AiOutlineCheck color="#fff" />
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-      <div className="h-24 p-5">
-        <p>Article : {article} </p>
-      </div>
-      <div className="w-full">{inputArticles[selectedArticle]}</div>
-      <div>
-        {position === 0 && <Slide1 />}
-        {position === 1 && <Slide2 />}
-        {position === 2 && <Slide3 />}
-        <button onClick={handlePrev}>Précédent</button>
-        <button onClick={handleNext}>Suivant</button>
-      </div>
+      {position === 0 && <Slide1 position={position} handleNext={handleNext} />}
+      {position === 1 && <Slide2 position={position} handleNext={handleNext} />}
+      {position === 2 && <Slide3 position={position} handleNext={handleNext} />}
+      <button onClick={handlePrev}>Précédent</button>
+      <button onClick={handleNext}>Suivant</button>
     </div>
   );
 }
