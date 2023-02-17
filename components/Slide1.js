@@ -6,6 +6,7 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import { AiOutlineCheck } from "react-icons/ai";
 import { addArticles } from "@/reducers/users";
 import { useDispatch } from "react-redux";
+import { BiCheck } from "react-icons/bi";
 
 export default function Slide1({ position, handleNext }) {
   const articles = ["Caissons", "Panneaux", "Habillages", "Personnalisé"];
@@ -131,12 +132,15 @@ export default function Slide1({ position, handleNext }) {
       article === "Habillages" &&
         dispatch(addArticles({ article, hauteur, largeur, epaisseur }));
     }
-    handleNext();
+
     setEpaisseur("");
     setHauteur("");
     setLargeur("");
     setLongueur("");
     setProfondeur("");
+    if (article !== "Aucun articles séléctionnés!") {
+      handleNext();
+    }
   };
 
   const slideStyle = {
@@ -189,9 +193,10 @@ export default function Slide1({ position, handleNext }) {
       <div className="w-full">{inputArticles[selectedArticle]}</div>
       <button
         onClick={() => addArticleRecuder()}
-        className="bg-colorBlue p-2 rounded text-white mt-2"
+        className="flex items-center justify-around bg-colorBrown p-2 rounded text-white mt-2 w-20 shadow-sm hover:opacity-80"
       >
-        Valider
+        ok
+        <BiCheck size={22} />
       </button>
     </div>
   );
