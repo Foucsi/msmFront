@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { BiCheck } from "react-icons/bi";
 
 export default function Slide2({ position }) {
   const users = useSelector((state) => state.user.value);
@@ -58,6 +59,10 @@ export default function Slide2({ position }) {
       style={slideStyle}
     >
       <div className="">{article}</div>
+      <button className="flex items-center justify-around bg-colorBrown p-2 rounded text-white mt-2 w-20 shadow-sm hover:opacity-80">
+        ok
+        <BiCheck size={22} />
+      </button>
     </div>
   );
 }
