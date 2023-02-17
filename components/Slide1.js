@@ -156,7 +156,7 @@ export default function Slide1({ position, handleNext }) {
       }transition-opacity flex flex-col w-full h-full items-center`}
     >
       <div className="flex items-end font-montserrat pt-10">
-        <p className="text-2xl">Quels types d'articles ?</p>
+        <p className="text-2xl pb-20">Quels types d'articles ?</p>
       </div>
       <div className="flex justify-around w-full">
         {articles.map((art, index) => (
