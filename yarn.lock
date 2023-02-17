@@ -1303,6 +1303,11 @@ xtend@^4.0.2:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
+yabai@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/yabai/-/yabai-0.0.10.tgz#2cc1f20f0a00da2d0ff4ba981ca20c980b82095e"
+  integrity sha512-uO8bDEOJktr0XxUZWYz7Xw9UdvdNlJZTmwGTsbFA5mSe43TO2JCwQotvod2+4C3/FnZ2OpkrGHcIx0W5X3QPAw==
+
 yaml@^1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/yaml/-/yaml-1.10.2.tgz#2301c5ffbf12b467de8da2333a459e29e7920e4b"

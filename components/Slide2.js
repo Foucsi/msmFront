@@ -58,6 +58,7 @@ export default function Slide2({ position }) {
       } w-full h-full`}
       style={slideStyle}
     >
+      <p>Nombres d'articles : {users.articles.length}</p>
       <div className="">{article}</div>
       <button className="flex items-center justify-around bg-colorBrown p-2 rounded text-white mt-2 w-20 shadow-sm hover:opacity-80">
         ok
