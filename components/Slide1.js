@@ -159,7 +159,7 @@ export default function Slide1({ position, handleNext }) {
           : "opacity-0 transition-opacity duration-1000 ease-in-out"
       }transition-opacity flex flex-col w-full h-full items-center`}
     >
-      <div className="flex items-end font-montserrat pt-10">
+      <div className="flex items-end font-montserrat pt-5">
         <p className="text-2xl pb-20">Quels types d'articles ?</p>
       </div>
       <div className="flex justify-around w-full">
@@ -171,7 +171,8 @@ export default function Slide1({ position, handleNext }) {
                 selectedArticle === art ? "Aucun articles séléctionnés!" : art
               );
             }}
-            className={`flex flex-col relative items-center justify-evenly border-x border-y border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
+            className={`flex flex-col relative items-center justify-evenly border-x border-y 
+            border-colorIcon h-72 w-48 rounded cursor-pointer hover:bg-slate-300 ${
               selectedArticle === art ? "bg-slate-300" : ""
             }`}
             key={index}

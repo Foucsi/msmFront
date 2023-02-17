@@ -30,8 +30,10 @@ export default function TestBox() {
       )}
       {position === 1 && <Slide2 position={position} />}
       {position === 2 && <Slide3 position={position} />}
-      <button onClick={handlePrev}>Précédent</button>
-      <button onClick={handleNext}>Suivant</button>
+      <div className="flex w-1/3 items-center justify-evenly">
+        <button onClick={handlePrev}>Précédent</button>
+        <button onClick={handleNext}>Suivant</button>
+      </div>
     </div>
   );
 }
