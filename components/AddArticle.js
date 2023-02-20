@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function AddArticle() {
+  const [dragging, setDragging] = useState(false);
+
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData("text/plain", event.target.id);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const data = event.dataTransfer.getData("text/plain");
+    const button = document.getElementById(data);
+    const textarea = document.getElementById("longtext");
+    if (textarea && button) {
+      // vérifie si textarea et button ne sont pas nuls
+      textarea.value += button.innerText + " ";
+    }
+  };
+
+  const handleDragEnd = () => {
+    // nothing to do here
+  };
+
   const options = [
     "Numérique",
     "Choixtextuel",
@@ -12,32 +37,54 @@ export default function AddArticle() {
 
   const listeOptions = {
     Numérique: (
-      <button className="bg-colorPanneau text-white font-bold w-1/2 p-1 rounded-md">
+      <button
+        draggable
+        onDragStart={handleDragStart}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+        onDragEnd={handleDragEnd}
+        className="bg-colorPanneau text-white font-bold w-1/2 p-1 rounded-md"
+      >
         Numérique
       </button>
     ),
     Choixtextuel: (
-      <button className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md">
+      <button
+        draggable
+        className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md"
+      >
         Choix textuel
       </button>
     ),
     Casesàcocher: (
-      <button className="bg-colorHabillage text-white font-bold w-1/2 p-1 rounded-md">
+      <button
+        draggable
+        className="bg-colorHabillage text-white font-bold w-1/2 p-1 rounded-md"
+      >
         Cases à cocher
       </button>
     ),
     Référencebois: (
-      <button className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md">
+      <button
+        draggable
+        className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
+      >
         Référence bois
       </button>
     ),
     Accessoires: (
-      <button className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md">
+      <button
+        draggable
+        className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
+      >
         Accessoires
       </button>
     ),
     Suppléments: (
-      <button className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md">
+      <button
+        draggable
+        className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
+      >
         Suppléments
       </button>
     ),
@@ -47,6 +94,8 @@ export default function AddArticle() {
     <div className="flex justify-evenly h-full w-full p-5">
       <div className=" flex items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl">
         <textarea
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
           placeholder="Fourniture et pose ... "
           className="h-full w-full rounded-xl p-5"
           id="longtext"
