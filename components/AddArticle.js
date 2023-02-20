@@ -11,12 +11,36 @@ export default function AddArticle() {
   ];
 
   const listeOptions = {
-    Numérique: <button>Numérique</button>,
-    Choixtextuel: <button>Choix textuel</button>,
-    Casesàcocher: <button>Cases à cocher</button>,
-    Référencebois: <button>Référence bois</button>,
-    Accessoires: <button>Accessoires</button>,
-    Suppléments: <button>Suppléments</button>,
+    Numérique: (
+      <button className="bg-colorPanneau text-white font-bold w-1/2 p-1 rounded-md">
+        Numérique
+      </button>
+    ),
+    Choixtextuel: (
+      <button className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md">
+        Choix textuel
+      </button>
+    ),
+    Casesàcocher: (
+      <button className="bg-colorHabillage text-white font-bold w-1/2 p-1 rounded-md">
+        Cases à cocher
+      </button>
+    ),
+    Référencebois: (
+      <button className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md">
+        Référence bois
+      </button>
+    ),
+    Accessoires: (
+      <button className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md">
+        Accessoires
+      </button>
+    ),
+    Suppléments: (
+      <button className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md">
+        Suppléments
+      </button>
+    ),
   };
 
   return (
@@ -31,7 +55,11 @@ export default function AddArticle() {
       </div>
       <div className="flex flex-col items-center justify-evenly h-full w-1/3 border-2">
         {options.map((opt, index) => {
-          return <div key={index}>{listeOptions[opt]}</div>;
+          return (
+            <div className="flex w-full justify-center" key={index}>
+              {listeOptions[opt]}
+            </div>
+          );
         })}
       </div>
     </div>
