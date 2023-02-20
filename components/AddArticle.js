@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { GoSettings } from "react-icons/go";
 
 export default function AddArticle() {
   const [widgets, setWidgets] = useState([]);
@@ -27,22 +28,22 @@ export default function AddArticle() {
 
   const listeOptions = {
     Numérique: (
-      <div
+      <button
         draggable
         onDragStart={(e) => handleOnDrag(e, "Numérique")}
         className="bg-colorPanneau text-white font-bold w-1/2 p-1 rounded-md"
       >
         Numérique
-      </div>
+      </button>
     ),
     Choixtextuel: (
-      <div
+      <button
         draggable
         onDragStart={(e) => handleOnDrag(e, "Choixtextuel")}
         className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md"
       >
         Choix textuel
-      </div>
+      </button>
     ),
     Casesàcocher: (
       <button
@@ -56,6 +57,7 @@ export default function AddArticle() {
     Référencebois: (
       <button
         draggable
+        onDragStart={(e) => handleOnDrag(e, "Référencebois")}
         className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
       >
         Référence bois
@@ -64,6 +66,7 @@ export default function AddArticle() {
     Accessoires: (
       <button
         draggable
+        onDragStart={(e) => handleOnDrag(e, "Accessoires")}
         className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
       >
         Accessoires
@@ -72,6 +75,7 @@ export default function AddArticle() {
     Suppléments: (
       <button
         draggable
+        onDragStart={(e) => handleOnDrag(e, "Suppléments")}
         className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
       >
         Suppléments
@@ -84,15 +88,23 @@ export default function AddArticle() {
       <div
         onDrop={handleOnDrop}
         onDragOver={handleDragOver}
-        className=" flex items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl"
+        className=" flex flex-col items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl"
       >
         <textarea
           placeholder="Fourniture et pose ... "
-          className="h-1/2 w-1/2 rounded-xl p-5"
+          className="h-1/2 w-full rounded-xl p-5"
         ></textarea>
 
-        {widgets.map((wid) => {
-          return <div>{listeOptions[wid]}</div>;
+        {widgets.map((wid, index) => {
+          return (
+            <div
+              key={index}
+              className="flex items-center justify-center w-1/2 mt-2 "
+            >
+              {listeOptions[wid]}
+              <GoSettings />
+            </div>
+          );
         })}
       </div>
       <div className="flex flex-col items-center justify-evenly h-full w-1/3 border-2">
