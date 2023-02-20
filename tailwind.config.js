@@ -28,6 +28,7 @@ module.exports = {
         colorCaisson: "#346CF0",
         colorHabillage: "#599A3E",
         colorPanneau: "#D64F54",
+        colorGrey: "#C1C1C1",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],

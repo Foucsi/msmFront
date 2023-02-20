@@ -1,7 +1,11 @@
-import React from "react";
+import AddArticle from "@/components/AddArticle";
+import React, { useState } from "react";
+import { BsPlusLg } from "react-icons/bs";
 
 export default function Produits() {
+  const [displayAddArticle, setDisplayAddArticle] = useState(false);
   const arrayProducts = ["Caissons", "Habillages", "Panneaux"];
+
   const listProducts = {
     Caissons: (
       <div className="flex items-center justify-center p-2 bg-colorCaisson rounded-sm cursor-pointer shadow">
@@ -21,10 +25,21 @@ export default function Produits() {
   };
 
   return (
-    <div className="flex items-center justify-around h-24 w-1/3 p-5">
-      {arrayProducts.map((prod) => {
-        return listProducts[prod];
-      })}
+    <div className="flex flex-col items-center justify-around h-full w-full p-5">
+      <div className="flex items-center justify-between x w-full mt-20">
+        {arrayProducts.map((prod) => {
+          return listProducts[prod];
+        })}
+      </div>
+
+      <div
+        onClick={() => setDisplayAddArticle(!displayAddArticle)}
+        className="flex items-center justify-center px-5 py-5 rounded-md cursor-pointer bg-colorGrey mt-5"
+      >
+        <BsPlusLg color="#fff" />
+      </div>
+
+      {displayAddArticle && <AddArticle />}
     </div>
   );
 }
