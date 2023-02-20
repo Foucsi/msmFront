@@ -1,29 +1,19 @@
 import React, { useState } from "react";
 
 export default function AddArticle() {
-  const [dragging, setDragging] = useState(false);
+  const [widgets, setWidgets] = useState([]);
 
-  const handleDragStart = (event) => {
-    event.dataTransfer.setData("text/plain", event.target.id);
+  const handleOnDrag = (e, widgetType) => {
+    e.dataTransfer.setData("widgetType", widgetType);
   };
 
-  const handleDragOver = (event) => {
-    event.preventDefault();
+  const handleOnDrop = (e) => {
+    const widgetType = e.dataTransfer.getData("widgetType");
+    setWidgets([...widgets, widgetType]);
   };
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const data = event.dataTransfer.getData("text/plain");
-    const button = document.getElementById(data);
-    const textarea = document.getElementById("longtext");
-    if (textarea && button) {
-      // vérifie si textarea et button ne sont pas nuls
-      textarea.value += button.innerText + " ";
-    }
-  };
-
-  const handleDragEnd = () => {
-    // nothing to do here
+  const handleDragOver = (e) => {
+    e.preventDefault();
   };
 
   const options = [
@@ -37,28 +27,27 @@ export default function AddArticle() {
 
   const listeOptions = {
     Numérique: (
-      <button
+      <div
         draggable
-        onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
-        onDrop={handleDrop}
-        onDragEnd={handleDragEnd}
+        onDragStart={(e) => handleOnDrag(e, "Numérique")}
         className="bg-colorPanneau text-white font-bold w-1/2 p-1 rounded-md"
       >
         Numérique
-      </button>
+      </div>
     ),
     Choixtextuel: (
-      <button
+      <div
         draggable
+        onDragStart={(e) => handleOnDrag(e, "Choixtextuel")}
         className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md"
       >
         Choix textuel
-      </button>
+      </div>
     ),
     Casesàcocher: (
       <button
         draggable
+        onDragStart={(e) => handleOnDrag(e, "Casesàcocher")}
         className="bg-colorHabillage text-white font-bold w-1/2 p-1 rounded-md"
       >
         Cases à cocher
@@ -92,15 +81,19 @@ export default function AddArticle() {
 
   return (
     <div className="flex justify-evenly h-full w-full p-5">
-      <div className=" flex items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl">
+      <div
+        onDrop={handleOnDrop}
+        onDragOver={handleDragOver}
+        className=" flex items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl"
+      >
         <textarea
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
           placeholder="Fourniture et pose ... "
-          className="h-full w-full rounded-xl p-5"
-          id="longtext"
-          name="longtext"
+          className="h-1/2 w-1/2 rounded-xl p-5"
         ></textarea>
+
+        {widgets.map((wid) => {
+          return <div>{listeOptions[wid]}</div>;
+        })}
       </div>
       <div className="flex flex-col items-center justify-evenly h-full w-1/3 border-2">
         {options.map((opt, index) => {
