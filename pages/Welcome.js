@@ -15,6 +15,7 @@ import * as XLSX from "xlsx";
 import Clients from "@/components/Clients";
 import Test from "./Test";
 import TestBox from "./TestBox";
+import Produits from "./Produits";
 
 export default function Welcome() {
   // const [file, setFile] = useState(null);
@@ -42,6 +43,7 @@ export default function Welcome() {
     Clients: <Clients />,
     Test: <Test />,
     TestBox: <TestBox />,
+    Produits: <Produits />,
   };
 
   const [getProfil, setGetProfil] = useState("");
@@ -190,6 +192,16 @@ export default function Welcome() {
             }`}
           >
             TestBox
+          </p>
+          <p
+            onClick={() => displaySection("Produits")}
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Produits"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
+          >
+            Produits
           </p>
         </div>
       </div>
