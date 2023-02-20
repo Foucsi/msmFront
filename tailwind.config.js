@@ -25,6 +25,9 @@ module.exports = {
         colorBgAdressDevis: "#F0EDED",
         colorCross: "#F2F2F4",
         colorIcon: "#062650",
+        colorCaisson: "#346CF0",
+        colorHabillage: "#599A3E",
+        colorPanneau: "#D64F54",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
