@@ -112,6 +112,8 @@ export default function AddArticle() {
           onDrop={handleTextareaDrop}
           placeholder="Fourniture et pose ... "
           className="h-full w-full rounded-xl p-5"
+          autoComplete="on"
+          defaultValue="Fourniture et pose en bois.Hauteur: mm, largeur: mm, profondeur: mm."
         ></textarea>
 
         {/* {widgets.map((wid, index) => {
