@@ -21,7 +21,7 @@ export default function AddArticle() {
     const startPos = textArea.selectionStart;
     const endPos = textArea.selectionEnd;
     const text = textArea.value;
-    const newWidgetType = `<span className="text-red-500">${widgetType}</span>`; // add CSS class to widgetType
+    const newWidgetType = `<p className="text-red-500">${widgetType}</p>`; // add CSS class to widgetType
     const newText =
       text.slice(0, startPos) + newWidgetType + text.slice(endPos); // use newWidgetType instead of widgetType
     textArea.value = newText;
