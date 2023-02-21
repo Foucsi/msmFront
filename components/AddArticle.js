@@ -9,23 +9,31 @@ export default function AddArticle() {
     e.target.classList.add("dragging");
   };
 
-  /*------------------------------------------------------------------------------------------------ */
-  // ci dessous les fonctions permettant le drag and drop dans le textarea de la creation du produit
-  const handleTextareaDragOver = (e) => {
+  const handleOnDrop = (e) => {
     e.preventDefault();
+    const widgetType = e.dataTransfer.getData("widgetType");
+    const textArea = document.getElementById("text-area");
+
+    const newWidgetType = `<span class="inline-block text-red-500 bg-slate-500 rounded-md p-1 ">
+                                ${widgetType}
+                            </span>`;
+
+    textArea.focus();
+    const selectionStart = textArea.selectionStart;
+    const selectionEnd = textArea.selectionEnd;
+    const text = textArea.value;
+    const newText =
+      text.slice(0, selectionStart) + newWidgetType + text.slice(selectionEnd);
+    textArea.value = newText;
+    textArea.setSelectionRange(
+      selectionStart + newWidgetType.length,
+      selectionStart + newWidgetType.length
+    );
+    setWidgets([...widgets, widgetType]);
   };
 
-  const handleTextareaDrop = (e) => {
-    const widgetType = e.dataTransfer.getData("widgetType");
-    const textArea = e.target;
-    const startPos = textArea.selectionStart;
-    const endPos = textArea.selectionEnd;
-    const text = textArea.value;
-    const newWidgetType = `<p className="text-red-500">${widgetType}</p>`; // add CSS class to widgetType
-    const newText =
-      text.slice(0, startPos) + newWidgetType + text.slice(endPos); // use newWidgetType instead of widgetType
-    textArea.value = newText;
-    setWidgets([...widgets, widgetType]);
+  const handleOnDragOver = (e) => {
+    e.preventDefault();
   };
 
   const options = [
@@ -51,21 +59,18 @@ export default function AddArticle() {
 
   return (
     <div className="flex justify-evenly h-full w-full p-5">
-      <div
-        // onDrop={handleOnDrop}
-        // onDragOver={handleDragOver}
-        className=" flex flex-col items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl"
-      >
+      <div className=" flex flex-col items-center justify-center h-full w-1/2 border-2 border-colorBlue rounded-xl">
         <textarea
-          onDragOver={handleTextareaDragOver}
-          onDrop={handleTextareaDrop}
+          onDrop={handleOnDrop}
+          onDragOver={handleOnDragOver}
+          id="text-area"
           placeholder="Fourniture et pose ... "
-          className="h-full w-full rounded-xl p-5"
-          autoComplete="on"
-          defaultValue="Fourniture et pose en bois.Hauteur: mm, largeur: mm, profondeur: mm."
-        ></textarea>
+          className="flex h-full w-full rounded-xl p-5 text-black"
+          value={widgets.join("")}
+          onChange={(e) => setWidgets(e.target.value.split(""))}
+        />
       </div>
-      <div className="flex flex-col items-center justify-evenly h-full w-1/3 border-2">
+      <div className="flex flex-col  items-center justify-evenly h-full w-1/3 border-2">
         {options.map((opt, index) => {
           return (
             <div className="flex w-full justify-center" key={index}>
