@@ -6,16 +6,8 @@ export default function AddArticle() {
 
   const handleOnDrag = (e, widgetType) => {
     e.dataTransfer.setData("widgetType", widgetType);
+    e.target.classList.add("dragging");
   };
-
-  //   const handleOnDrop = (e) => {
-  //     const widgetType = e.dataTransfer.getData("widgetType");
-  //     setWidgets([...widgets, widgetType]);
-  //   };
-
-  //   const handleDragOver = (e) => {
-  //     e.preventDefault();
-  //   };
 
   /*------------------------------------------------------------------------------------------------ */
   // ci dessous les fonctions permettant le drag and drop dans le textarea de la creation du produit
@@ -29,7 +21,9 @@ export default function AddArticle() {
     const startPos = textArea.selectionStart;
     const endPos = textArea.selectionEnd;
     const text = textArea.value;
-    const newText = text.slice(0, startPos) + widgetType + text.slice(endPos);
+    const newWidgetType = `<span className="text-red-500">${widgetType}</span>`; // add CSS class to widgetType
+    const newText =
+      text.slice(0, startPos) + newWidgetType + text.slice(endPos); // use newWidgetType instead of widgetType
     textArea.value = newText;
     setWidgets([...widgets, widgetType]);
   };
@@ -53,51 +47,6 @@ export default function AddArticle() {
         Numérique
       </button>
     ),
-    Choixtextuel: (
-      <button
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Choix textuel")}
-        className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md"
-      >
-        Choix textuel
-      </button>
-    ),
-    Casesàcocher: (
-      <button
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Cases à cocher")}
-        className="bg-colorHabillage text-white font-bold w-1/2 p-1 rounded-md"
-      >
-        Cases à cocher
-      </button>
-    ),
-    Référencebois: (
-      <button
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Référence bois")}
-        className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
-      >
-        Référence bois
-      </button>
-    ),
-    Accessoires: (
-      <button
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Accessoires")}
-        className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
-      >
-        Accessoires
-      </button>
-    ),
-    Suppléments: (
-      <button
-        draggable
-        onDragStart={(e) => handleOnDrag(e, "Suppléments")}
-        className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
-      >
-        Suppléments
-      </button>
-    ),
   };
 
   return (
@@ -115,18 +64,6 @@ export default function AddArticle() {
           autoComplete="on"
           defaultValue="Fourniture et pose en bois.Hauteur: mm, largeur: mm, profondeur: mm."
         ></textarea>
-
-        {/* {widgets.map((wid, index) => {
-          return (
-            <div
-              key={index}
-              className="flex items-center justify-center w-1/2 mt-2 "
-            >
-              {listeOptions[wid]}
-              <GoSettings />
-            </div>
-          );
-        })} */}
       </div>
       <div className="flex flex-col items-center justify-evenly h-full w-1/3 border-2">
         {options.map((opt, index) => {
