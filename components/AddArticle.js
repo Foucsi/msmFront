@@ -8,16 +8,17 @@ export default function AddArticle() {
     e.dataTransfer.setData("widgetType", widgetType);
   };
 
-  const handleOnDrop = (e) => {
-    const widgetType = e.dataTransfer.getData("widgetType");
-    setWidgets([...widgets, widgetType]);
-  };
+  //   const handleOnDrop = (e) => {
+  //     const widgetType = e.dataTransfer.getData("widgetType");
+  //     setWidgets([...widgets, widgetType]);
+  //   };
 
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
+  //   const handleDragOver = (e) => {
+  //     e.preventDefault();
+  //   };
 
   /*------------------------------------------------------------------------------------------------ */
+  // ci dessous les fonctions permettant le drag and drop dans le textarea de la creation du produit
   const handleTextareaDragOver = (e) => {
     e.preventDefault();
   };
@@ -55,7 +56,7 @@ export default function AddArticle() {
     Choixtextuel: (
       <button
         draggable
-        onDragStart={(e) => handleOnDrag(e, "Choixtextuel")}
+        onDragStart={(e) => handleOnDrag(e, "Choix textuel")}
         className="bg-colorCaisson text-white font-bold w-1/2 p-1 rounded-md"
       >
         Choix textuel
@@ -64,7 +65,7 @@ export default function AddArticle() {
     Casesàcocher: (
       <button
         draggable
-        onDragStart={(e) => handleOnDrag(e, "Casesàcocher")}
+        onDragStart={(e) => handleOnDrag(e, "Cases à cocher")}
         className="bg-colorHabillage text-white font-bold w-1/2 p-1 rounded-md"
       >
         Cases à cocher
@@ -73,7 +74,7 @@ export default function AddArticle() {
     Référencebois: (
       <button
         draggable
-        onDragStart={(e) => handleOnDrag(e, "Référencebois")}
+        onDragStart={(e) => handleOnDrag(e, "Référence bois")}
         className="bg-colorViolet text-white font-bold w-1/2 p-1 rounded-md"
       >
         Référence bois
