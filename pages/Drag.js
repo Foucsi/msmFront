@@ -63,18 +63,19 @@ function TexteATrous() {
 
   return (
     <div className="p-5">
-      <div className="h-full w-3/4">
+      <div className="h-full w-3/4 ">
         <p className="leading-8">
           {texte.split("___").map((partie, index) => (
             <span key={index}>
               {partie}
               {index < trous.length && (
                 <span
-                  className={`bg-red-200 rounded p-1 cursor-pointer ${trous[index].style}`}
+                  className={` rounded p-1 cursor-pointer ${trous[index].style}`}
                   onDragOver={(event) => handleDragOver(event)}
                   onDrop={(event) => handleDrop(event, trous[index].id)}
                 >
                   {trous[index].contenu}
+
                   {/* <GoSettings className="cursor-pointer" /> */}
                 </span>
               )}
