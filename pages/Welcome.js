@@ -16,6 +16,7 @@ import Clients from "@/components/Clients";
 import Test from "./Test";
 import TestBox from "./TestBox";
 import Produits from "./Produits";
+import Drag from "./Drag";
 
 export default function Welcome() {
   // const [file, setFile] = useState(null);
@@ -44,6 +45,7 @@ export default function Welcome() {
     Test: <Test />,
     TestBox: <TestBox />,
     Produits: <Produits />,
+    Drag: <Drag />,
   };
 
   const [getProfil, setGetProfil] = useState("");
@@ -202,6 +204,16 @@ export default function Welcome() {
             }`}
           >
             Produits
+          </p>
+          <p
+            onClick={() => displaySection("Drag")}
+            className={`hover:bg-colorBrownSecond p-2 cursor-pointer  ${
+              section.type.name === "Drag"
+                ? "border-l-4 border-solid border-l-colorBorderLeft"
+                : ""
+            }`}
+          >
+            Drag
           </p>
         </div>
       </div>
