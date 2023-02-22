@@ -63,7 +63,7 @@ function TexteATrous() {
         <div className="flex mt-20 items-center justify-around">
           {mots.map((mot, index) => (
             <div
-              className={`border-2 bg-${mots[index].color} flex items-center justify-between p-2 cursor-pointer rounded`}
+              className={`border-2 text-white bg-${mots[index].color} flex items-center justify-between p-2 cursor-pointer rounded`}
               key={mot.id}
               draggable
               onDragStart={(event) => handleDragStart(event, mot)}
