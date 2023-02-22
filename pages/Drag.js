@@ -28,8 +28,8 @@ function TexteATrous() {
     {
       id: 4,
       content: "Référence bois",
-      color: "colorCaisson",
-      style: "text-white font-normal bg-colorCaisson",
+      color: "colorVio",
+      style: "text-white font-normal bg-colorVio",
     },
   ]);
 
