@@ -7,10 +7,30 @@ function TexteATrous() {
   );
 
   const [mots, setMots] = useState([
-    { id: 1, content: "Numérique", color: "colorPanneau" },
-    { id: 2, content: "Choix visuel", color: "colorCaisson" },
-    { id: 3, content: "Case à cocher", color: "colorHabillage" },
-    { id: 4, content: "Référence bois", color: "colorCaisson" },
+    {
+      id: 1,
+      content: "Numérique",
+      color: "colorPanneau",
+      style: "text-white font-bold bg-colorPanneau",
+    },
+    {
+      id: 2,
+      content: "Choix visuel",
+      color: "colorCaisson",
+      style: "text-white font-medium bg-colorCaisson",
+    },
+    {
+      id: 3,
+      content: "Case à cocher",
+      color: "colorHabillage",
+      style: "text-white font-semibold bg-colorHabillage",
+    },
+    {
+      id: 4,
+      content: "Référence bois",
+      color: "colorCaisson",
+      style: "text-white font-normal bg-colorCaisson",
+    },
   ]);
 
   const [trous, setTrous] = useState([
@@ -36,6 +56,7 @@ function TexteATrous() {
     const nouveauxTrous = [...trous];
     const trouIndex = nouveauxTrous.findIndex((trou) => trou.id === trouId);
     nouveauxTrous[trouIndex].contenu = mot.content;
+    nouveauxTrous[trouIndex].style = mot.style;
 
     setTrous(nouveauxTrous);
   };
@@ -49,7 +70,7 @@ function TexteATrous() {
               {partie}
               {index < trous.length && (
                 <span
-                  className="bg-red-200 rounded  p-1 cursor-pointer"
+                  className={`bg-red-200 rounded p-1 cursor-pointer ${trous[index].style}`}
                   onDragOver={(event) => handleDragOver(event)}
                   onDrop={(event) => handleDrop(event, trous[index].id)}
                 >
