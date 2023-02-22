@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { GoSettings } from "react-icons/go";
 
 export default function AddArticle() {
   const [widgets, setWidgets] = useState([]);
+  const textAreaRef = useRef(null); // Ajouter une référence à l'élément textarea
 
   const handleOnDrag = (e, widgetType) => {
     e.dataTransfer.setData("widgetType", widgetType);
@@ -12,7 +13,7 @@ export default function AddArticle() {
   const handleOnDrop = (e) => {
     e.preventDefault();
     const widgetType = e.dataTransfer.getData("widgetType");
-    const textArea = document.getElementById("text-area");
+    const textArea = textAreaRef.current; // Utiliser la référence à l'élément textarea
 
     const newWidgetType = `<span class="inline-block text-red-500 bg-slate-500 rounded-md p-1 ">
                                 ${widgetType}
@@ -68,6 +69,7 @@ export default function AddArticle() {
           className="flex h-full w-full rounded-xl p-5 text-black"
           value={widgets.join("")}
           onChange={(e) => setWidgets(e.target.value.split(""))}
+          ref={textAreaRef} // Ajouter la référence à l'élément textarea
         />
       </div>
       <div className="flex flex-col  items-center justify-evenly h-full w-1/3 border-2">
