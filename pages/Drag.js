@@ -94,6 +94,15 @@ function TexteATrous() {
             </div>
           ))}
         </div>
+        <div className="h-1/2">
+          <textarea
+            className="h-full w-full"
+            name=""
+            id=""
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
       </div>
     </div>
   );
