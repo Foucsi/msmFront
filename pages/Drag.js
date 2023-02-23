@@ -3,8 +3,10 @@ import { GoSettings } from "react-icons/go";
 
 function TexteATrous() {
   const [texte, setTexte] = useState(
-    "Fourniture et pose ___ en bois ___ .Hauteur ___ mm, Largeur ___ mm, Profondeur ___ mm.Meubles divisé en ___ parties."
+    "Fourniture et pose ___ en bois ___ .Hauteur ___ mm, Largeur ___ mm, Profondeur ___ mm.Meubles divisé en ___ parties.Finition exterieurs (joues et facades si existantes) en ___ .Ouverture avec ___ charnieres à ouverture 110° pour portes en ___ , fermetures a amortisseur."
   );
+
+  const [textA, setTextA] = useState("");
 
   const [mots, setMots] = useState([
     {
@@ -40,6 +42,9 @@ function TexteATrous() {
     { id: 4, contenu: "" },
     { id: 5, contenu: "" },
     { id: 6, contenu: "" },
+    { id: 7, contenu: "" },
+    { id: 8, contenu: "" },
+    { id: 9, contenu: "" },
   ]);
 
   const handleDragStart = (event, mot) => {
@@ -62,11 +67,11 @@ function TexteATrous() {
   };
 
   return (
-    <div className="p-5">
-      <div className="h-full w-3/4 ">
-        <p className="leading-8">
+    <div className="p-5 w-full">
+      <div className="h-full w-full ">
+        <p className="leading-10 w-1/2 border-2 p-5">
           {texte.split("___").map((partie, index) => (
-            <span key={index}>
+            <span key={index} className="w-1/2">
               {partie}
               {index < trous.length && (
                 <span
@@ -94,13 +99,16 @@ function TexteATrous() {
             </div>
           ))}
         </div>
-        <div className="h-1/2">
+
+        <div className="h-1/2 pt-5 w-full">
           <textarea
-            className="h-full w-full"
+            className="h-full w-full p-5"
             name=""
             id=""
             cols="30"
             rows="10"
+            value={texte}
+            onChange={(e) => setTexte(e.target.value)}
           ></textarea>
         </div>
       </div>
