@@ -45,6 +45,9 @@ function TexteATrous() {
     { id: 7, contenu: "" },
     { id: 8, contenu: "" },
     { id: 9, contenu: "" },
+    { id: 10, contenu: "" },
+    { id: 11, contenu: "" },
+    { id: 12, contenu: "" },
   ]);
 
   const handleDragStart = (event, mot) => {
@@ -69,28 +72,29 @@ function TexteATrous() {
   return (
     <div className="p-5 w-full">
       <div className="h-full w-full ">
-        <p className="leading-10 w-1/2 border-2 p-5">
+        <p className="leading-10 w-1/2 border-2 border-colorBlue p-5 rounded-xl">
           {texte.split("___").map((partie, index) => (
             <span key={index} className="w-1/2">
               {partie}
               {index < trous.length && (
                 <span
-                  className={` rounded p-1 cursor-pointer ${trous[index].style}`}
+                  className={`rounded p-1 cursor-pointer ${trous[index].style}`}
                   onDragOver={(event) => handleDragOver(event)}
                   onDrop={(event) => handleDrop(event, trous[index].id)}
                 >
-                  {trous[index].contenu}
-
-                  {/* <GoSettings className="cursor-pointer" /> */}
+                  {trous[index].contenu}{" "}
+                  <span className=" cursor-pointer bg-slate-400 w-8 h-8">
+                    .
+                  </span>
                 </span>
               )}
             </span>
           ))}
         </p>
-        <div className="flex mt-20 items-center justify-around">
+        <div className="flex w-1/2 mt-10 items-center justify-around">
           {mots.map((mot, index) => (
             <div
-              className={`border-2 text-white bg-${mots[index].color} flex items-center justify-between p-2 cursor-pointer rounded`}
+              className={`border-2 text-white bg-${mots[index].color} flex items-center justify-around p-1 cursor-pointer rounded-xl`}
               key={mot.id}
               draggable
               onDragStart={(event) => handleDragStart(event, mot)}
@@ -102,7 +106,7 @@ function TexteATrous() {
 
         <div className="h-1/2 pt-5 w-full">
           <textarea
-            className="h-full w-full p-5"
+            className="h-36 w-full p-5"
             name=""
             id=""
             cols="30"
