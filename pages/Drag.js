@@ -7,6 +7,21 @@ function TexteATrous() {
   );
 
   const [textA, setTextA] = useState("");
+  const [visibilityStates, setVisibilityStates] = useState([]);
+
+  const handleVisibilityChange = (index) => {
+    //fonction qui permet de mettre à jour l'état de visibilityStates
+    //Elle prend en entrée un index,
+    //qui représente l'index de l'élément dans le tableau pour lequel la visibilité doit être mise à jour.
+    setVisibilityStates((prevStates) => {
+      //Lors de la mise à jour,
+      //setVisibilityStates appelle une fonction qui retourne une nouvelle version de l'état
+      //précédent en inversant la valeur de l'élément correspondant à l'index donné.
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index];
+      return newStates;
+    });
+  };
 
   const [mots, setMots] = useState([
     {
@@ -70,7 +85,7 @@ function TexteATrous() {
   };
 
   return (
-    <div className="p-5 w-full">
+    <div className="absolute p-5 w-full">
       <div className="h-full w-full ">
         <p className="leading-10 w-1/2 border-2 border-colorBlue p-5 rounded-xl">
           {texte.split("___").map((partie, index) => (
@@ -78,14 +93,20 @@ function TexteATrous() {
               {partie}
               {index < trous.length && (
                 <span
-                  className={`rounded p-1 cursor-pointer ${trous[index].style}`}
+                  className={` rounded p-1 cursor-pointer ${trous[index].style}`}
                   onDragOver={(event) => handleDragOver(event)}
                   onDrop={(event) => handleDrop(event, trous[index].id)}
                 >
+                  {visibilityStates[index] && (
+                    <div className="relative h-24 w-24 bg-black z-auto">
+                      <p>test</p>
+                    </div>
+                  )}
                   {trous[index].contenu}{" "}
-                  <span className=" cursor-pointer bg-slate-400 w-8 h-8">
-                    .
-                  </span>
+                  <GoSettings
+                    className="inline"
+                    onClick={() => handleVisibilityChange(index)}
+                  />
                 </span>
               )}
             </span>
