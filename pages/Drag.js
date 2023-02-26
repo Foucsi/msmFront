@@ -3,7 +3,7 @@ import { GoSettings } from "react-icons/go";
 
 function TexteATrous() {
   const [texte, setTexte] = useState(
-    "Fourniture et pose ___ en bois ___ .Hauteur ___ mm, Largeur ___ mm, Profondeur ___ mm.Meubles divisé en ___ parties.Finition exterieurs (joues et facades si existantes) en ___ .Ouverture avec ___ charnieres à ouverture 110° pour portes en ___ , fermetures a amortisseur."
+    "Fourniture et pose ___ en bois ___ .Hauteur ___ mm, Largeur ___ mm, Profondeur ___ mm.Meubles divisé en ___ parties.Finition exterieurs (joues et facades si existantes) en ___ .Ouverture avec ___ charniéres à ouverture 110° pour portes en ___ , fermetures a amortisseur."
   );
 
   const [textA, setTextA] = useState("");
@@ -127,7 +127,7 @@ function TexteATrous() {
 
         <div className="h-1/2 pt-5 w-full">
           <textarea
-            className="h-36 w-full p-5"
+            className="h-36 w-1/2 p-5"
             name=""
             id=""
             cols="30"
@@ -137,6 +137,9 @@ function TexteATrous() {
           ></textarea>
         </div>
       </div>
+      <button className="bg-colorBlue p-2 rounded-xl text-white shadow-sm">
+        Valider
+      </button>
     </div>
   );
 }
